@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="CustomerRepository.cs" />
     <Compile Include="DALFacade.cs" />
     <Compile Include="DbInitializer.cs" />
     <Compile Include="IRepository.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="MovieStoreDbContext.cs" />
     <Compile Include="MovieStoreDbInitializer.cs" />
     <Compile Include="Order.cs" />
+    <Compile Include="OrderRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
