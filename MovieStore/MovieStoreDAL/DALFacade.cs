@@ -6,10 +6,15 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace MovieStoreDAL
 {
-    class DALFacade
+    public class DALFacade
     {
+
+        System.Data.Entity.SqlServer.SqlProviderServices
+            ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+
         private IRepository<Order> _orderRepository;
         private IRepository<Movie> _moviesRepository;
         private IRepository<Customer> _customersRepository;
