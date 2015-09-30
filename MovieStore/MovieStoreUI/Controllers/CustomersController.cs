@@ -22,7 +22,8 @@ namespace MovieStoreUI.Controllers
         // GET: Customers/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var customer = df._customersRepository.Get(id);
+            return View(customer);
         }
 
         // GET: Customers/Create
@@ -33,56 +34,58 @@ namespace MovieStoreUI.Controllers
 
         // POST: Customers/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create([Bind(Include = "FirstName,LastName,Address,Email")]Customer customer)
         {
             try
             {
-                // TODO: Add insert logic here
+                df._customersRepository.Add(customer);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(customer);
             }
         }
 
         // GET: Customers/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Customer customer = df._customersRepository.Get(id);
+            return View(customer);
         }
 
         // POST: Customers/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Address,Email")]Customer customer)
         {
             try
             {
-                // TODO: Add update logic here
+                df._customersRepository.Edit(customer);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(customer);
             }
         }
 
         // GET: Customers/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+           Customer customer = df._customersRepository.Get(id);
+            return View(customer);
         }
 
         // POST: Customers/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult DeleteConfirmed(int id)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                Customer customer = df._customersRepository.Get(id);
+                df._customersRepository.Remove(id);
                 return RedirectToAction("Index");
             }
             catch
