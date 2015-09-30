@@ -13,12 +13,14 @@ namespace MovieStoreUI.Controllers
 {
     public class MoviesController : Controller
     {
-        private MovieRepository mp = new MovieRepository();
+        
+        private DALFacade df = new DALFacade();
+        
 
         // GET: Movies
         public ActionResult Index()
         {
-            var movies = mp.GetAll();
+            var movies = df._moviesRepository.GetAll();
             return View(movies);
          
         }
@@ -27,7 +29,7 @@ namespace MovieStoreUI.Controllers
         public ActionResult Details(int id)
         {
           
-            Movie movie = mp.Get(id);
+            Movie movie = df._moviesRepository.Get(id);
             //Movie movie = db.Movies.Find(id);
             if (movie == null)
             {
@@ -51,7 +53,7 @@ namespace MovieStoreUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                mp.Add(movie);
+                df._moviesRepository.Add(movie);
              
                 return RedirectToAction("Index");
             }
@@ -63,7 +65,7 @@ namespace MovieStoreUI.Controllers
         public ActionResult Edit(int id)
         {
 
-            Movie movie = mp.Get(id);
+            Movie movie = df._moviesRepository.Get(id);
             if (movie == null)
             {
                 return HttpNotFound();
@@ -80,7 +82,7 @@ namespace MovieStoreUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                mp.Edit(movie);
+                df._moviesRepository.Edit(movie);
                 return RedirectToAction("Index");
             }
             return View(movie);
@@ -90,7 +92,7 @@ namespace MovieStoreUI.Controllers
         public ActionResult Delete(int id)
         {
 
-            Movie movie = mp.Get(id);
+            Movie movie = df._moviesRepository.Get(id);
             if (movie == null)
             {
                 return HttpNotFound();
@@ -103,8 +105,8 @@ namespace MovieStoreUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Movie movie = mp.Get(id);
-            mp.Remove(id);
+            Movie movie = df._moviesRepository.Get(id);
+            df._moviesRepository.Remove(id);
             return RedirectToAction("Index");
         }
 
