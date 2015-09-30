@@ -5,9 +5,13 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStoreDAL", "MovieStoreDAL\MovieStoreDAL.csproj", "{93F41840-309D-445F-8010-81C1772A1432}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStoreUI", "MovieStoreUI\MovieStoreUI.csproj", "{A38C1DD3-ED9A-4217-9928-A54D946C4592}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStoreAdminUI", "MovieStoreUI\MovieStoreAdminUI.csproj", "{A38C1DD3-ED9A-4217-9928-A54D946C4592}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStoreUserUI", "MovieStoreAdminUI\MovieStoreUserUI.csproj", "{91175535-3BA8-480E-BE10-6F4850C563CF}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStoreUI", "MovieStoreAdminUI\MovieStoreUI.csproj", "{91175535-3BA8-480E-BE10-6F4850C563CF}"
+>>>>>>> aff533456283de78400673c611e2bc12ed0d5ac8
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
