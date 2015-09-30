@@ -45,6 +45,7 @@ namespace MovieStoreDAL
         {
             var a = this.Get(id);
             db.Movies.Remove(a);
+            db.SaveChanges();
         }
 
         
