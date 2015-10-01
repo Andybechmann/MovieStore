@@ -20,7 +20,8 @@ namespace MovieStoreAdminUI.Controllers
         // GET: Movie/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Movie movie = facade._moviesRepository.Get(id);
+            return View(movie);
         }
 
         
