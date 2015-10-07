@@ -5607,7 +5607,7 @@ button.close {
 body.modal-open,
 .modal-open .navbar-fixed-top,
 .modal-open .navbar-fixed-bottom {
-  margin-right: 15px;
+  margin-right: 5px;
 }
 
 .modal {
@@ -5644,14 +5644,15 @@ body.modal-open,
   padding: 10px;
   margin-right: auto;
   margin-left: auto;
+  align-self: center;
 }
 
 .modal-content {
   position: relative;
-  background-color: #ffffff;
+  background-color: #333333;
   border: 1px solid #999999;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
+  border-radius: 5px;
   outline: none;
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
           box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);

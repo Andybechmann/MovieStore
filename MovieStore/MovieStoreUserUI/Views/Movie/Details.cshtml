@@ -1,66 +1,120 @@
 ﻿@model MovieStoreDAL.Movie
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = @Html.DisplayFor(model => model.Title);
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Title)</h2>
 
-<div>
-    <h4>Movie</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+<div class="container-fluid">
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+    <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
+        <div class="col-md-3"><img src="@Html.DisplayFor(model => model.ImageUrl)" class="img-responsive" alt="No Cover" style="width: 100%; height: 100%"></div>
+        <div class="col-md-9">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Year)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Year)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Year)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrailerUrl)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Genre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrailerUrl)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Genre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
-
-    </dl>
+            </dl>
+            <div class="col-md-3 col-lg-3">
+                <a href="/User/Order/Buy/@Model.Id" class="btn btn-success btn-block" role="button">Buy</a>
+            </div>
+            <div class="col-md-3 col-lg-3">
+                <a href="/User/Movie/Index" class="btn btn-default btn-block " role="button">Return</a>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Buy", "Buy", "Order", new { id = Model.Id }, null) |    
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="video-container">
+    <iframe  autohide="1" src="@Html.DisplayFor(model => model.TrailerUrl)"></iframe>
+</div>
+
+@*<div>
+        <h4>Movie</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Year)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ImageUrl)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TrailerUrl)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TrailerUrl)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Genre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Genre)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Buy", "Buy", "Order", new { id = Model.Id }, null) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
