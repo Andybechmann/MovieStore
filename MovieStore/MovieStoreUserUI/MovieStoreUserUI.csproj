@@ -177,10 +177,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Movie\Index.cshtml" />
     <Content Include="Views\Movie\Details.cshtml" />
     <Content Include="Views\Order\Buy.cshtml" />
     <Content Include="Views\Movie\IndexTest.cshtml" />
+=======
+>>>>>>> f88f04491f7533b44325af0641489abd8d4ffdf2
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
