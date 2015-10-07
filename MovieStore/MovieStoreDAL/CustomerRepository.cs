@@ -49,8 +49,10 @@ namespace MovieStoreDAL
 
         public void Remove(int id)
         {
-            var a = this.Get(id);
-            db.Customers.Remove(a);
+            var customer = this.Get(id);
+            Address address = customer.Address;
+            db.Customers.Remove(customer);
+            db.Addresses.Remove(address);
             db.SaveChanges();
         }
     }
