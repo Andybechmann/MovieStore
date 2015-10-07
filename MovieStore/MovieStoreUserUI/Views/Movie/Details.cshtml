@@ -1,0 +1,61 @@
+﻿@model MovieStoreDAL.Movie
+
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.Title);
+}
+
+<h2>@Html.DisplayFor(model => model.Title)</h2>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-3"><img src="@Html.DisplayFor(model => model.ImageUrl)" class="img-responsive" alt="No Cover" style="width: 100%; height: 100%"></div>
+        <div class="col-md-9">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Year)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Year)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Genre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Genre)
+                </dd>
+
+            </dl>
+            <div class="col-md-3 col-lg-3">
+                <a href="/User/Order/Buy/@Model.Id" class="btn btn-success btn-block" role="button">Buy</a>
+            </div>
+            <div class="col-md-3 col-lg-3">
+                <a href="/User/Movie/Index" class="btn btn-default btn-block " role="button">Return</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="video-container">
+    <iframe  autohide="1" src="@Html.DisplayFor(model => model.TrailerUrl)"></iframe>
+</div>
