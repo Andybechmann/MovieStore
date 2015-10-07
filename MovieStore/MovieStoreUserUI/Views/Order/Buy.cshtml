@@ -1,0 +1,27 @@
+﻿@model MovieStoreDAL.Movie
+
+@{
+    ViewBag.Title = "Buy";
+}
+
+<h2>Shopping Cart</h2>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-1"><img src="@Html.DisplayFor(model => model.ImageUrl)" class="img-responsive" alt="No Cover" style="width: 100%; height: 100%"></div>
+        <div class="col-md-4">
+            <p class="text-center">@Html.DisplayFor(model => model.Title)</p>
+        </div>
+        <div class="col-md-4">
+            ...................................................................
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayFor(model => model.Price);
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+</div>
