@@ -18,7 +18,7 @@ namespace MovieStoreDAL
         public Address Address { get; set; }
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Compare("Email")]
+        //[Compare("Email")]
         public string EmailConfirm { get; set; }
 
         /*public virtual List<Order> orders { get; set; }*/

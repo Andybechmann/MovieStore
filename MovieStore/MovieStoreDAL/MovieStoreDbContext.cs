@@ -25,5 +25,7 @@ namespace MovieStoreDAL
 
         public System.Data.Entity.DbSet<MovieStoreDAL.Order> Orders { get; set; }
 
+        public System.Data.Entity.DbSet<MovieStoreDAL.Address> Addresses { get; set; }
+
     }
 }

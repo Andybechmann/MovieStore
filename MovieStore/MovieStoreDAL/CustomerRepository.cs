@@ -25,12 +25,21 @@ namespace MovieStoreDAL
         public void Edit(Customer entity)
         {
             db.Entry(entity).State = EntityState.Modified;
+            var customerAddress = (from a in db.Addresses
+                                  where a.Id == entity.Address.Id
+                                  select a).FirstOrDefault();
+            customerAddress.Streetname = entity.Address.Streetname;
+            customerAddress.ZipCode = entity.Address.ZipCode;
+            customerAddress.City = entity.Address.City;
+
+            db.Entry(customerAddress).State = EntityState.Modified;
+
             db.SaveChanges();
         }
 
         public Customer Get(int id)
         {
-            return db.Customers.FirstOrDefault(a => a.Id == id);
+            return db.Customers.Include("Address").FirstOrDefault(a => a.Id == id);
         }
 
         public IEnumerable<Customer> GetAll()

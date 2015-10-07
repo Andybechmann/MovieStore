@@ -15,8 +15,8 @@ namespace MovieStoreUI.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            
-            return View();
+            IEnumerable<Customer> customer = df._customersRepository.GetAll();
+            return View(customer);
         }
 
         // GET: Customers/Details/5
@@ -34,7 +34,7 @@ namespace MovieStoreUI.Controllers
 
         // POST: Customers/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "FirstName,LastName,Address,Email")]Customer customer)
+        public ActionResult Create([Bind(Include = "FirstName,LastName,Address,Email,EmailConfirm")]Customer customer)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace MovieStoreUI.Controllers
 
         // POST: Customers/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Address,Email")]Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Address,Email, EmailConfirm")]Customer customer)
         {
             try
             {
