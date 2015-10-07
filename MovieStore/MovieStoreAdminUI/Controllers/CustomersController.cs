@@ -78,8 +78,8 @@ namespace MovieStoreUI.Controllers
             return View(customer);
         }
 
-        // POST: Customers/Delete/5
-        [HttpPost]
+        // POST: Customers/Delete/
+        [HttpPost,ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
             try

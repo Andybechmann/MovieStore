@@ -51,6 +51,7 @@ namespace MovieStoreDAL
         {
             var a = this.Get(id);
             db.Customers.Remove(a);
+            db.SaveChanges();
         }
     }
 }
