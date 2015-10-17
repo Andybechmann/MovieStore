@@ -89,24 +89,30 @@ namespace MovieStoreUI.Controllers
         }
 
         // GET: Movies/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+
+        //    Movie movie = df._moviesRepository.Get(id);
+        //    if (movie == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(movie);
+        //}
+
+        // POST: Movies/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        [HttpPost]
         public ActionResult Delete(int id)
         {
-
+            
+            df._moviesRepository.Remove(id);
             Movie movie = df._moviesRepository.Get(id);
             if (movie == null)
             {
-                return HttpNotFound();
+                TempData["message"] = string.Format("Was deleted");
             }
-            return View(movie);
-        }
-
-        // POST: Movies/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Movie movie = df._moviesRepository.Get(id);
-            df._moviesRepository.Remove(id);
             return RedirectToAction("Index");
         }
 
