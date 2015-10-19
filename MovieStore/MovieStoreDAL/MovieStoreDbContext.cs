@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace MovieStoreDAL
 {
@@ -20,13 +16,13 @@ namespace MovieStoreDAL
             Database.SetInitializer(new MovieStoreDbInitializer());
         }
 
-        public System.Data.Entity.DbSet<MovieStoreDAL.Movie> Movies { get; set; }
+        public DbSet<Movie> Movies { get; set; }
 
-        public System.Data.Entity.DbSet<MovieStoreDAL.Customer> Customers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
-        public System.Data.Entity.DbSet<MovieStoreDAL.Order> Orders { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
-        public System.Data.Entity.DbSet<MovieStoreDAL.Address> Addresses { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
     }
 }
