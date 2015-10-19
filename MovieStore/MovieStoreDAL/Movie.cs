@@ -24,7 +24,7 @@ namespace MovieStoreDAL
       
         public string Genre { get; set; }
 
-        public virtual List<Order> Orders { get; set; }
+        public virtual List<OrderLine> OrderLines { get; set; }
 
     }
 }

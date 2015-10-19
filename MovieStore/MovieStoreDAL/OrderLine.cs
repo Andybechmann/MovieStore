@@ -1,4 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace MovieStoreDAL
 
 {
@@ -23,6 +26,14 @@ namespace MovieStoreDAL
             }
 
         }
-        public Movie Movie { get; set; }
+        [Column(Order = 0), Key, ForeignKey("Movie")]
+        public int Movie_Id { get; set; }
+
+        public virtual Movie Movie { get; set; }
+
+        [Column(Order = 1), Key, ForeignKey("Order")]
+        public int Order_Id { get; set; }
+
+        public virtual Order Order { get; set; }
     }
 }

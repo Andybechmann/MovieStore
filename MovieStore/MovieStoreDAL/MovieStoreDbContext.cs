@@ -17,6 +17,7 @@ namespace MovieStoreDAL
     
         public MovieStoreDbContext() : base("MovieStoreShop")
         {
+            Database.SetInitializer(new MovieStoreDbInitializer());
         }
 
         public System.Data.Entity.DbSet<MovieStoreDAL.Movie> Movies { get; set; }

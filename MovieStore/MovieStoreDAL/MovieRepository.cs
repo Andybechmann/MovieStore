@@ -38,7 +38,10 @@ namespace MovieStoreDAL
 
         public IEnumerable<Movie> GetAll()
         {
-            return db.Movies;
+            using (var db = new MovieStoreDbContext())
+            {
+                return db.Movies.ToList();
+            }
         }
 
         public void Remove(int id)

@@ -12,13 +12,13 @@ namespace MovieStoreDAL
 
         public DateTime Date { get; set; }
 
-        public virtual Movie Movie{ get; set;}
+    
 
         public virtual Customer Customer { get; set; }
 
-        public int MovieId { get; set; }
 
         public int CustomerId { get; set; }
 
+        public virtual List<OrderLine> OrderLines { get; set; }
     }
 }
