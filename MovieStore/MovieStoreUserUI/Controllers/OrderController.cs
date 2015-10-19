@@ -10,7 +10,10 @@ namespace MovieStoreAdminUI.Controllers
     public class OrderController : Controller
     {
         DALFacade _facade = new DALFacade();
-
+        
+        // I Constructor
+        //if(Session["cart"] == null)
+        //    Session["cart"] = new List<ShoppingcartItem>();
         
         public ActionResult Index()
         {
