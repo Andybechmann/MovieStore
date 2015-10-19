@@ -13,7 +13,16 @@ namespace MovieStoreAdminUI.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            facade._moviesRepository.GetAll();
+            IEnumerable<Movie> movies = facade._moviesRepository.GetAll();
+            ShoppingCart shoppingcart = new ShoppingCart();
+            shoppingcart.AddOrderLine(new OrderLine() {Amount = 3, Movie = movies.FirstOrDefault() });
+            shoppingcart.AddOrderLine(new OrderLine() { Amount = 7, Movie = movies.LastOrDefault() });
+
+            IEnumerable<Customer> customers = facade._customersRepository.GetAll();
+            Order order = new Order() {Date = DateTime.Now, Customer = customers.FirstOrDefault(), OrderLines = shoppingcart.GetOrderLines() };
+
+            facade._orderRepository.Add(order);
+
             return View(facade._moviesRepository.GetAll());
         }
 

@@ -13,6 +13,7 @@ namespace MovieStoreDAL
     
         public MovieStoreDbContext() : base("MovieStoreShop")
         {
+            Database.SetInitializer(new MovieStoreDbInitializer());
         }
 
         public DbSet<Movie> Movies { get; set; }
