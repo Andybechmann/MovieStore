@@ -1,0 +1,39 @@
+diff a/MovieStore/MovieStoreUserUI/Content/Custom.css b/MovieStore/MovieStoreUserUI/Content/Custom.css	(rejected hunks)
+@@ -3,10 +3,35 @@
+     color: white;
+ }
+ 
+-.body-content {
+-    width: 100%;
++.smallhead {
++    background-color: rgba(39, 39, 39, 0.70);
++    color: white;
++    padding-top: 10px;
++     -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
++          box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
++
+ }
+ 
++.item {
++    margin-top: 10px;
++    border-bottom: 2px;
++    border-bottom-color: black;
++}
++.panel-body {
++    color: black;
++}
++.panel-header {
++    color: black;
++}
++.panel-footer {
++    color: black;
++}
++
++/*.vertical-align {
++    display: flex;
++    align-items: center;
++}*/
++
+ 
+ .video-container {
+ 	position:relative;
