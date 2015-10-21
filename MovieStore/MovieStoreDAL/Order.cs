@@ -20,5 +20,15 @@ namespace MovieStoreDAL
         public int CustomerId { get; set; }
 
         public virtual List<OrderLine> OrderLines { get; set; }
+
+       public double GetOrderSum()
+       {
+           double sum = 0;
+           foreach (var orderLine in OrderLines)
+           {
+               sum += orderLine.GetOrdeLineSum();
+           }
+           return sum;
+       }
     }
 }

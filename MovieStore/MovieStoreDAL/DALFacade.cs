@@ -12,8 +12,8 @@ namespace MovieStoreDAL
     public class DALFacade
     {
 
-        System.Data.Entity.SqlServer.SqlProviderServices
-            ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+        //System.Data.Entity.SqlServer.SqlProviderServices
+        //    ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
 
         public IRepository<Order> _orderRepository { get; private set; }
         public IRepository<Movie> _moviesRepository { get; private set; }
