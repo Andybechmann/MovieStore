@@ -24,8 +24,6 @@ namespace MovieStoreAdminUI.Controllers
             return View(movie);
         }
 
-     
-
         public ActionResult AddToCart(int id)
         {
             var movie = facade._moviesRepository.Get(id);
@@ -45,7 +43,5 @@ namespace MovieStoreAdminUI.Controllers
             }
             return cart;
         }
-
-
     }
 }

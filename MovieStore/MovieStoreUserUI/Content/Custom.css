@@ -1,4 +1,5 @@
 ﻿body {
+
     background-color: #393939;
     color: white;
 }
@@ -26,12 +27,6 @@
 .panel-footer {
     color: black;
 }
-
-/*.vertical-align {
-    display: flex;
-    align-items: center;
-}*/
-
 
 .video-container {
 	position:relative;
