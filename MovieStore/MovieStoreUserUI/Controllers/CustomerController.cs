@@ -95,6 +95,12 @@ namespace MovieStoreAdminUI.Controllers
                     return View();
                 }
             }
+
+            //public ActionResult EmailTjek (String email)
+            //{
+            //  Customer customer = df._customersRepository.GetAll().Where(c => c.Email == email).FirstOrDefault();
+
+            //}
         }
     }
 }

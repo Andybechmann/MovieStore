@@ -1,7 +1,7 @@
 ﻿@using MovieStoreUserUI.Models
 
 @{
-    var cartCount = Session["ShoppingCart"] != null ? ((ShoppingCart)Session["ShoppingCart"]).GetOrderLines().Count : 0; 
+    var cartCount = Session["ShoppingCart"] != null ? ((ShoppingCart)Session["ShoppingCart"]).GetOrderLines().Count: 0; 
 }
 
 <!DOCTYPE html>
