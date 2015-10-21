@@ -4,5 +4,63 @@
     ViewBag.Title = "Buy";
 }
 
-<h2>Buy</h2>
 
+<div class="panel panel-default">
+    <div class="page-header">
+        <h2>Order details</h2>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+
+            <dt>Summary:</dt>
+            <dd>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Movie</th>
+                            <th>Year</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th class="text-right">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var line in Model.orderLines)
+                        {
+                            <tr>
+                                <td>@line.Movie.Title </td>
+                                <td>@line.Movie.Year.Year</td>
+                                <td>@line.Movie.Price.ToString("c")</td>
+                                <td>@line.Amount</td>
+                                <td class="text-right">@line.GetOrdeLineSum().ToString("C")</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right"> <strong>Total: @Model.GetTotal().ToString("C")</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </dd>
+
+            <dt>Shipping addresse:</dt>
+
+            <dd>
+                <address>
+                    @Model.Customer.FirstName
+                    @Model.Customer.LastName <br />
+                    @Model.Customer.Address.Streetname <br />
+                    @Model.Customer.Address.ZipCode
+                    @Model.Customer.Address.City
+                </address>
+
+            </dd>
+        </dl>
+    </div>
+    <div class="panel-footer">
+
+    </div>
+</div>
