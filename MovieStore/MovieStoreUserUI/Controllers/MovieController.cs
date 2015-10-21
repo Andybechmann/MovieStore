@@ -32,7 +32,5 @@ namespace MovieStoreAdminUI.Controllers
             Movie movie = facade._moviesRepository.Get(id);
             return View(movie);
         }
-
-        
     }
 }

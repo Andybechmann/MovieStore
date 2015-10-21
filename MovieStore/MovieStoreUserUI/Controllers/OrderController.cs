@@ -11,24 +11,13 @@ namespace MovieStoreAdminUI.Controllers
     {
         DALFacade _facade = new DALFacade();
         
-        // I Constructor
-        //if(Session["cart"] == null)
-        //    Session["cart"] = new List<ShoppingcartItem>();
-        
-        public ActionResult Index()
-        {
-            
-            return View();
-        }
-
         [HttpGet]
         public ActionResult Buy(int id)
         {
             Movie movie = _facade._moviesRepository.Get(id);
             return View(movie);
         }
-
-
+        
 
     }
 }
