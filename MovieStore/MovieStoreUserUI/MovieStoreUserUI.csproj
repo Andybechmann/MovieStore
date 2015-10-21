@@ -132,7 +132,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\CustomerController.cs" />
+=======
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+>>>>>>> f797d5c65e48067010c3f02b0b03fedb874a4dfa
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
@@ -141,7 +146,7 @@
     <Compile Include="Models\MovieViewModel.cs" />
     <Compile Include="Models\ShoppingCartModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShoppingCart.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -179,7 +184,11 @@
     <Content Include="Views\Movie\Index.cshtml" />
     <Content Include="Views\Movie\Details.cshtml" />
     <Content Include="Views\Order\Buy.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Customers\Create.cshtml" />
+=======
+    <Content Include="Views\Cart\Index.cshtml" />
+>>>>>>> f797d5c65e48067010c3f02b0b03fedb874a4dfa
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
