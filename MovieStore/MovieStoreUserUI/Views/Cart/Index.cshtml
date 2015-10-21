@@ -2,39 +2,146 @@
 
 @{
     ViewBag.Title = "Index";
+    double total = 0;
 }
 
 <h2>Cart</h2>
 
-<table class="table">
-    <tr>
-        <th>Movie</th>
-        <th>Amount</th>
-        <th></th>
-    </tr>
+@*<table class="table">
+        <tr>
+            <th>Movie</th>
+            <th>Amount</th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model.GetOrderLines()) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Movie.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new {  id=item.Movie.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.GetOrderLines()) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>$@Html.DisplayFor(modelItem => item.Movie.Price)</td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Movie.Id })
+            </td>
+        </tr>
+    }
 
-</table>
-<div>
-    <a href="/User/Customers/Create" class="btn btn-success btn-block" role="button">Checkout <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+    </table>
+    <div>
+        <a href="/User/Customers/Create" class="btn btn-success btn-block" role="button">Checkout <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+    </div>*@
+
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p class="text-left"><b>Item/s</b></p>
+                </div>
+
+                <div class="panel-body">
+                    <div class="container-fluid item">
+
+                        <div class="row">
+                            <table class="table">
+                                @foreach (var item in Model.GetOrderLines())
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="@Html.DisplayFor(modelItem => item.Movie.ImageUrl)" class="img-responsive img-thumbnail" alt="" height="50" width="50"  />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Movie.Title)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Amount)
+                                            @*<a href="/User/Movie/AddAmount/@item.Movie.Id" class="btn btn-xs btn-block" role="button">+</a>*@
+                                            @*<button class="btn btn-xs btn-danger pull-right">+</button>
+                                            <button class="btn btn-xs btn-danger pull-right">-</button>*@
+                                            @*@Html.EditorFor(modelItem => item.Amount, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Movie.Id })
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p class="text-left"><b>Order Summary</b></p>
+                </div>
+
+                <div class="panel-body">
+                    <div class="container">
+
+                        <div class="row">
+                            @foreach (var item in Model.GetOrderLines())
+                            {
+                                <div class="col-md-2 col-lg-6">
+                                    <p class="text-left">@Html.DisplayFor(modelItem => item.Movie.Title)</p>
+                                </div>
+                                <div class="col-md-2 col-lg-6">
+                                    <p class="text-right">@Html.DisplayFor(modelItem => item.Movie.Price)</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-2 col-lg-6">
+                                <div><p class="text-left"><b>Total</b></p></div>
+                            </div>
+                            <div class="col-md-2 col-lg-6">
+                                <div>
+                                    <p class="text-right">@Model.GetTotal().ToString("C")</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <a href="/User/Customers/EmailTjek" class="btn btn-success btn-block" role="button">Checkout <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+        </div>
+    </div>
 </div>
 
-<div class=" col-lg-offset-4 col-lg-2">
-    <a href="" class="btn btn-default  " role="button">New Customer</a>
-</div>
-<div class="col-lg-2">
-    <a href="" class="btn btn-default " role="button">Excisting Customer</a>
-</div>
+
+    @*<div class=" col-lg-offset-4 col-lg-2">
+            <a href="" class="btn btn-default  " role="button">New Customer</a>
+        </div>
+        <div class="col-lg-2">
+            <a href="" class="btn btn-default " role="button">Excisting Customer</a>
+        </div>*@
+
+                                            @*<table class="table">
+                                                    @foreach (var item in Model.GetOrderLines())
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Movie.Title)
+                                                            </td>
+                                                            <td>$@Html.DisplayFor(modelItem => item.Movie.Price)</td>
+                                                        </tr>
+                                                    }
+                                                </table>*@
+
+
+@*$@foreach (var item in Model.GetOrderLines())
+{
+    total += item.Movie.Price;
+}@total</p>*@
