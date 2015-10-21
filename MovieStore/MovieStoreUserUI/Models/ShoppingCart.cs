@@ -36,5 +36,16 @@ namespace MovieStoreUserUI.Models
             }
             return orderLines;
         }
+
+        public double GetTotal()
+        {
+            double sum = 0;
+            foreach (var item in orderLines)
+            {
+                sum += item.GetOrdeLineSum();
+            }
+            return sum;
+        }
+
     }
 }

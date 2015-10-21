@@ -11,8 +11,8 @@ namespace MovieStoreDAL
     {
         protected override void Seed(MovieStoreDbContext context)
         {
-            Movie movie1 = new Movie { Title = "Star Wars", Year = DateTime.Now, ImageUrl = "http://ia.media-imdb.com/images/M/MV5BMTkwNzAwNDA4N15BMl5BanBnXkFtZTgwMTA2MDcwNzE@._V1__SX1857_SY903_.jpg", TrailerUrl = "http://www.imdb.com/video/imdb/vi3343889177/imdb/embed?" };
-            Movie movie = new Movie { Title = "title",Year=DateTime.Now, ImageUrl = "", TrailerUrl = "" };
+            Movie movie1 = new Movie { Title = "Star Wars", Year = DateTime.Now, ImageUrl = "http://ia.media-imdb.com/images/M/MV5BMTkwNzAwNDA4N15BMl5BanBnXkFtZTgwMTA2MDcwNzE@._V1__SX1857_SY903_.jpg", TrailerUrl = "http://www.imdb.com/video/imdb/vi3343889177/imdb/embed?", Price = 15 };
+            Movie movie = new Movie { Title = "titleoglsgnoilsgnæsjngæasjgnlakdsgsaldgldskg",Year=DateTime.Now, ImageUrl = "http://ia.media-imdb.com/images/M/MV5BMTkwNzAwNDA4N15BMl5BanBnXkFtZTgwMTA2MDcwNzE@._V1__SX1857_SY903_.jpg", TrailerUrl = "", Price = 10 };
             OrderLine orderline = new OrderLine() { Movie = movie1, Amount = 4 };
             OrderLine orderline1 = new OrderLine() { Movie = movie, Amount = 12 };
             Customer customer = new Customer

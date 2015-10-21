@@ -33,6 +33,7 @@ namespace MovieStoreAdminUI.Controllers
             return RedirectToAction("Index");
         }
 
+
         private ShoppingCart GetCart()
         {
             var cart = Session["ShoppingCart"] as ShoppingCart;
