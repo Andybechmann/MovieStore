@@ -15,6 +15,8 @@ namespace MovieStoreAdminUI.Controllers
             return View(GetCart());
         }
 
+    
+
         public ActionResult Delete(int id)
         {
             var line = GetCart().GetOrderLines().FirstOrDefault(x => x.Movie.Id == id);
