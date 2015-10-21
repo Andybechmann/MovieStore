@@ -18,7 +18,7 @@ namespace MovieStoreAdminUI.Controllers
             Customer customer = (Customer) TempData["customer"];
             cart.Customer = customer;
 
-            return View();
+            return View(cart);
         }
         
 
