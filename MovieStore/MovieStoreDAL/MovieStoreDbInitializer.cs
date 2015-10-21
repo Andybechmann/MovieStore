@@ -15,7 +15,11 @@ namespace MovieStoreDAL
             Movie movie = new Movie { Title = "title",Year=DateTime.Now, ImageUrl = "", TrailerUrl = "" };
             OrderLine orderline = new OrderLine() { Movie = movie1, Amount = 4 };
             OrderLine orderline1 = new OrderLine() { Movie = movie, Amount = 12 };
-            Customer customer = new Customer { FirstName = "Karl", Address = new Address() { Streetname = "ostegade" } };
+            Customer customer = new Customer
+            {
+                FirstName = "Karl", Address = new Address() { Streetname = "ostegade" },
+                Email = "andy@andy"
+            };
             Order order = new Order { Date = DateTime.Now, OrderLines = new List<OrderLine>() {orderline,orderline1 }, Customer = customer };
             context.Movies.Add(movie);
             context.Customers.Add(customer);

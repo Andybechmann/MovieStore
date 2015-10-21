@@ -185,7 +185,6 @@
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\CustomerTjek.cshtml" />
     <Content Include="Views\Customer\CheckEmail.cshtml" />
-    <Content Include="Views\Customer\Email.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

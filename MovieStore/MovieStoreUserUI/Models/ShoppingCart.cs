@@ -10,6 +10,7 @@ namespace MovieStoreUserUI.Models
     public class ShoppingCart
     {
        private List<OrderLine> orderLines { get; set;  }
+       public Customer Customer { get; set; }
        
        public void AddOrderLine(Movie movie, int amount)
         {

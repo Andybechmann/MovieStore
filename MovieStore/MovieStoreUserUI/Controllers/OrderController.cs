@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
+using MovieStoreUserUI.Models;
 
 namespace MovieStoreAdminUI.Controllers
 {
@@ -12,10 +13,12 @@ namespace MovieStoreAdminUI.Controllers
         DALFacade _facade = new DALFacade();
         
         [HttpGet]
-        public ActionResult Buy(int id)
+        public ActionResult Buy(ShoppingCart cart)
         {
-            Movie movie = _facade._moviesRepository.Get(id);
-            return View(movie);
+            Customer customer = (Customer) TempData["customer"];
+            cart.Customer = customer;
+
+            return View();
         }
         
 

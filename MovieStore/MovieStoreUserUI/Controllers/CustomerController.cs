@@ -58,20 +58,24 @@ namespace MovieStoreAdminUI.Controllers
                 }
             }
             [HttpGet]
-            public ActionResult Email()
+            public ActionResult CheckEmail()
             {
                 return View();
             }
-
-            public ActionResult Email(string id)
+        [HttpPost]
+        public ActionResult CheckEmail(string email)
+        {
+            Customer customer = df._customersRepository.GetAll().FirstOrDefault(c => c.Email == email);
+            if (customer != null)
             {
-                return View();
+                ViewBag.Exist = "Customer with email is exist";
+                TempData["customer"] = customer;
             }
-
-            //public ActionResult EmailTjek (string email)
-            //{
-            //  Customer customer = df._customersRepository.GetAll().Where(c => c.Email == email).FirstOrDefault();
-
-            //}
+            else
+            {
+                ViewBag.Exist = "Customer with email is not exist";
+            }
+            return View();
         }
+    }
     }
