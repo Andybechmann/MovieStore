@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MovieStoreDAL;
 
 namespace MovieStoreAdminUI.Controllers
 {
     public class CartController : Controller
     {
+        DALFacade facade = new DALFacade();
         // GET: Cart
         public ActionResult Index()
         {
@@ -25,6 +27,24 @@ namespace MovieStoreAdminUI.Controllers
                 GetCart().RemoveOrderLine(line);
             }
             return RedirectToAction("index");
+        }
+
+        public ActionResult AddAmount(int id)
+        {
+            var movie = facade._moviesRepository.Get(id);
+            var cart = GetCart();
+            cart.AddOrderLine(movie, 1);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult RemoveAmount(int id)
+        {
+            var movie = facade._moviesRepository.Get(id);
+            var cart = GetCart();
+            cart.RemoveAmount(movie, 1);
+
+            return RedirectToAction("Index");
         }
 
         private ShoppingCart GetCart()

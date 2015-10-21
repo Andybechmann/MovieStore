@@ -23,7 +23,21 @@ namespace MovieStoreUserUI.Models
             {
                 orderLines.Add(new OrderLine() { Movie = movie, Amount = amount });
             }
-        } 
+        }
+
+        public void RemoveAmount(Movie movie, int amount)
+        {
+            OrderLine line = GetOrderLines().FirstOrDefault(x => x.Movie.Id == movie.Id);
+            if (line != null)
+            {
+                line.Amount -= amount;
+            }
+            else
+            {
+                orderLines.Add(new OrderLine() { Movie = movie, Amount = amount });
+            }
+        }
+
         public void RemoveOrderLine(OrderLine orderLine)
         {
             GetOrderLines().Remove(orderLine);
