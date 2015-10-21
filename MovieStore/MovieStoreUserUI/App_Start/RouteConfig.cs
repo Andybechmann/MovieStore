@@ -18,6 +18,7 @@ namespace MovieStoreAdminUI
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Movie", action = "Index", id = UrlParameter.Optional }
             );
+            
         }
     }
 }
