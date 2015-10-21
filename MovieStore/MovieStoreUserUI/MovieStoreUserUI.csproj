@@ -180,9 +180,11 @@
     <Content Include="Views\Movie\Index.cshtml" />
     <Content Include="Views\Movie\Details.cshtml" />
     <Content Include="Views\Order\Buy.cshtml" />
-    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\CustomerTjek.cshtml" />
+    <Content Include="Views\Customer\CheckEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

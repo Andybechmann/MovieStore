@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "CheckEmail";
+
+}
+
+<h2>CheckEmail</h2>
+
+<div>
+   
+
+    @using (Html.BeginForm("CheckEmail", "Customer"))
+    {
+        <div>
+            Existerende kunde:
+            @Html.TextBox("email", "Your email")
+            @ViewBag.Exist
+            @if (ViewBag.Exist == "Customer with email is exist")
+            {
+                @Html.ActionLink("Continue checkout","Buy","Order",null,new {@class = "btn btn-success btn-xs"})
+            }
+            <br/>
+            <input class="btn btn-primary btn-xs" type="submit" value="Check Email" />
+        </div>
+    }
+    
+
+</div>
+
+<div>
+    @Html.ActionLink("New customer", "Create", "Customer", null, new { @class = "btn btn-primary btn-xs" })
+</div>
+

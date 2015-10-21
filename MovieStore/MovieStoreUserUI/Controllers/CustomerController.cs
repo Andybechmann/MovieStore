@@ -7,26 +7,11 @@ using MovieStoreDAL;
 
 namespace MovieStoreAdminUI.Controllers
 {
-    public class CustomerController : Controller
-    {
-        public class CustomersController : Controller
+        public class CustomerController : Controller
         {
             //private CustomerRepository cr = new CustomerRepository();
             private DALFacade df = new DALFacade();
 
-            // GET: Customers
-            public ActionResult Index()
-            {
-                IEnumerable<Customer> customer = df._customersRepository.GetAll();
-                return View(customer);
-            }
-
-            // GET: Customers/Details/5
-            public ActionResult Details(int id)
-            {
-                var customer = df._customersRepository.Get(id);
-                return View(customer);
-            }
 
             // GET: Customers/Create
             public ActionResult Create()
@@ -72,31 +57,25 @@ namespace MovieStoreAdminUI.Controllers
                     return View(customer);
                 }
             }
-
-
-
-            // GET: Customers/Delete/5
-            public ActionResult Delete(int id)
+            [HttpGet]
+            public ActionResult CheckEmail()
             {
-                Customer customer = df._customersRepository.Get(id);
-                return View(customer);
+                return View();
             }
-
-            // POST: Customers/Delete/
-            [HttpPost, ActionName("Delete")]
-            public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult CheckEmail(string email)
+        {
+            Customer customer = df._customersRepository.GetAll().FirstOrDefault(c => c.Email == email);
+            if (customer != null)
             {
-                try
-                {
-                    Customer customer = df._customersRepository.Get(id);
-                    df._customersRepository.Remove(id);
-                    return RedirectToAction("Index");
-                }
-                catch
-                {
-                    return View();
-                }
+                ViewBag.Exist = "Customer with email is exist";
+                TempData["customer"] = customer;
             }
+            else
+            {
+                ViewBag.Exist = "Customer with email is not exist";
+            }
+            return View();
         }
     }
-}
+    }
