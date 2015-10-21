@@ -36,18 +36,21 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> @cartCount - Items<span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-cart" role="menu">
                             <li>
-                                <span class="item">
-                                    <span class="item-left">
-                                        <img src="http://lorempixel.com/50/50/" alt="" />
-                                        <span class="item-info">
-                                            <span>Item name</span>
-                                            <span>23$</span>
+                                @foreach (var item in ((ShoppingCart)Session["ShoppingCart"]).GetOrderLines())
+                                {
+                                    <span class="item">
+                                        <span class="item-left">
+                                            <img src="@Html.DisplayFor(modelItem => item.Movie.ImageUrl)" class="img-responsive" alt="" height="25%" width="25%" />
+                                            <span class="item-info">
+                                                <span>@Html.DisplayFor(modelItem => item.Movie.Title)</span>
+                                                <span>@Html.DisplayFor(modelItem => item.Movie.Price)</span>
+                                            </span>
+                                        </span>
+                                        <span class="item-right">
+                                            <button class="btn btn-xs btn-danger pull-right">x</button>
                                         </span>
                                     </span>
-                                    <span class="item-right">
-                                        <button class="btn btn-xs btn-danger pull-right">x</button>
-                                    </span>
-                                </span>
+                                }
                             </li>
 
                             <li class="divider"></li>

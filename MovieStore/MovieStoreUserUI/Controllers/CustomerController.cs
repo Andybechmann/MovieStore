@@ -73,6 +73,8 @@ namespace MovieStoreAdminUI.Controllers
                 }
             }
 
+
+
             // GET: Customers/Delete/5
             public ActionResult Delete(int id)
             {
