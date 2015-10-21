@@ -12,10 +12,7 @@ namespace MovieStoreDAL
 
         public DateTime Date { get; set; }
 
-    
-
         public virtual Customer Customer { get; set; }
-
 
         public int CustomerId { get; set; }
 
@@ -23,12 +20,7 @@ namespace MovieStoreDAL
 
        public double GetOrderSum()
        {
-           double sum = 0;
-           foreach (var orderLine in OrderLines)
-           {
-               sum += orderLine.GetOrdeLineSum();
-           }
-           return sum;
+           return OrderLines.Sum(orderLine => orderLine.GetOrdeLineSum());
        }
     }
 }

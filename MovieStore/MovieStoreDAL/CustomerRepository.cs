@@ -12,9 +12,10 @@ namespace MovieStoreDAL
     {
 
         private MovieStoreDbContext db = new MovieStoreDbContext();
-
+           
         public void Add(Customer entity)
         {
+
             using (var db = new MovieStoreDbContext())
             {
                 db.Customers.Add(entity);
