@@ -6,7 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using MovieStoreAdminUI.Infrastructure.Binders;
 using MovieStoreDAL;
+using MovieStoreUserUI.Models;
 
 namespace MovieStoreAdminUI
 {
@@ -19,6 +21,7 @@ namespace MovieStoreAdminUI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(ShoppingCart), new CartModelBinder());
         }
     }
 }
