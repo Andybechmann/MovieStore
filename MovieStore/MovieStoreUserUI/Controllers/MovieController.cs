@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
+using MovieStoreUserUI.Models;
 
 namespace MovieStoreAdminUI.Controllers
 {
@@ -13,16 +14,6 @@ namespace MovieStoreAdminUI.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            IEnumerable<Movie> movies = facade._moviesRepository.GetAll();
-            ShoppingCart shoppingcart = new ShoppingCart();
-            shoppingcart.AddOrderLine(new OrderLine() {Amount = 3, Movie = movies.FirstOrDefault() });
-            shoppingcart.AddOrderLine(new OrderLine() { Amount = 7, Movie = movies.LastOrDefault() });
-
-            IEnumerable<Customer> customers = facade._customersRepository.GetAll();
-            Order order = new Order() {Date = DateTime.Now, Customer = customers.FirstOrDefault(), OrderLines = shoppingcart.GetOrderLines() };
-
-            facade._orderRepository.Add(order);
-
             return View(facade._moviesRepository.GetAll());
         }
 
@@ -33,6 +24,24 @@ namespace MovieStoreAdminUI.Controllers
             return View(movie);
         }
 
-        
+        public ActionResult AddToCart(int id)
+        {
+            var movie = facade._moviesRepository.Get(id);
+            var cart = GetCart();
+            cart.AddOrderLine(movie, 1);
+
+            return RedirectToAction("Index");
+        }
+
+        private ShoppingCart GetCart()
+        {
+            var cart = Session["ShoppingCart"] as ShoppingCart;
+            if (cart == null)
+            {
+                cart = new ShoppingCart();
+                Session["ShoppingCart"] = cart;
+            }
+            return cart;
+        }
     }
 }
