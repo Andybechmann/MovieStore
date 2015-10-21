@@ -10,7 +10,7 @@ namespace MovieStoreDAL
 {
    public class DbInitializer
     {
-       public static void Initialize()
+        public static void Initialize()
         {
             Database.SetInitializer(new MovieStoreDbInitializer());
         }

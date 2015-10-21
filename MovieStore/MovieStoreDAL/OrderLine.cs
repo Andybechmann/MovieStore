@@ -35,5 +35,10 @@ namespace MovieStoreDAL
         public int Order_Id { get; set; }
 
         public virtual Order Order { get; set; }
+
+        public double GetOrdeLineSum()
+        {
+            return amount*Movie.Price;
+        }
     }
 }
