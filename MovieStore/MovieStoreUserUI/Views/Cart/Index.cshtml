@@ -60,11 +60,13 @@
                                             @Html.DisplayFor(modelItem => item.Movie.Title)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Amount)
-                                            @*<a href="/User/Movie/AddAmount/@item.Movie.Id" class="btn btn-xs btn-block" role="button">+</a>*@
-                                            @*<button class="btn btn-xs btn-danger pull-right">+</button>
-                                            <button class="btn btn-xs btn-danger pull-right">-</button>*@
-                                            @*@Html.EditorFor(modelItem => item.Amount, new { htmlAttributes = new { @class = "form-control" } })*@
+                                            <div class="col-lg-offset-3">@Html.DisplayFor(modelItem => item.Amount)</div>
+                                            <div class="col-lg-1">
+                                                <a href="/User/Cart/RemoveAmount/@item.Movie.Id" class="btn btn-block pull-left" role="button">-</a>
+                                            </div>
+                                            <div class=" col-lg-offset-1 col-lg-1">
+                                                <a href="/User/Cart/AddAmount/@item.Movie.Id" class="btn btn-block pull-right" role="button">+</a>
+                                            </div>
                                         </td>
                                         <td>
                                             @Html.ActionLink("Delete", "Delete", new { id = item.Movie.Id })
@@ -139,9 +141,3 @@
                                                         </tr>
                                                     }
                                                 </table>*@
-
-
-@*$@foreach (var item in Model.GetOrderLines())
-{
-    total += item.Movie.Price;
-}@total</p>*@
