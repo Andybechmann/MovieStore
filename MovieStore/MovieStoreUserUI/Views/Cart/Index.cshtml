@@ -7,35 +7,6 @@
 
 <h2>Cart</h2>
 
-@*<table class="table">
-        <tr>
-            <th>Movie</th>
-            <th>Amount</th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model.GetOrderLines()) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movie.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>$@Html.DisplayFor(modelItem => item.Movie.Price)</td>
-            <td>
-                @Html.ActionLink("Delete", "Delete", new {  id=item.Movie.Id })
-            </td>
-        </tr>
-    }
-
-    </table>
-    <div>
-        <a href="/User/Customers/Create" class="btn btn-success btn-block" role="button">Checkout <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
-    </div>*@
-
-
-
 <div class="container-fluid">
 
     <div class="row">
@@ -99,7 +70,7 @@
                                     <p class="text-left">@Html.DisplayFor(modelItem => item.Movie.Title)</p>
                                 </div>
                                 <div class="col-md-2 col-lg-6">
-                                    <p class="text-right">@Html.DisplayFor(modelItem => item.Movie.Price)</p>
+                                    <p class="text-right">@item.GetOrdeLineSum().ToString("C")</p>
                                 </div>
                             }
                         </div>
