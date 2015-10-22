@@ -61,6 +61,11 @@
         </dl>
     </div>
     <div class="panel-footer">
-
+        @using (Html.BeginForm("Buy","Order"))
+        {
+            @*@Html.ActionLink("Confirm and buy", "Buy", "Order", null, new { @class = "btn btn-success btn-primary btn-lg" })*@
+            <input class = "btn btn-success btn-primary btn-lg" type="submit" value="Confirm"/>
+        }
+        
     </div>
 </div>

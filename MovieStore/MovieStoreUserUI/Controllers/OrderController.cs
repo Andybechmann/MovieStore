@@ -15,12 +15,28 @@ namespace MovieStoreAdminUI.Controllers
         [HttpGet]
         public ActionResult Buy(ShoppingCart cart)
         {
-            Customer customer = (Customer) TempData["customer"];
+            Customer customer = (Customer) TempData.Peek("customer");
             cart.Customer = customer;
 
-            return View();
+            return View(cart);
         }
+        [HttpPost,ActionName("Buy")]
         
+        public ActionResult BuyConfirmed(ShoppingCart cart)
+        {
+            Customer customer = (Customer) TempData["customer"];
+            Order order = new Order
+            {
+                Customer = customer,
+                CustomerId = customer.Id,
+                Date = DateTime.Now,
+                OrderLines = cart.orderLines
+            };
+            _facade._orderRepository.Add(order);
+            cart.CleanCart();
+            return View("Confirmed");
+        }
+
 
     }
 }

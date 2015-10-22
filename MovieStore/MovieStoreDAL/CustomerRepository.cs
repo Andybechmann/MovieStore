@@ -12,9 +12,10 @@ namespace MovieStoreDAL
     {
 
         private MovieStoreDbContext db = new MovieStoreDbContext();
-
+           
         public void Add(Customer entity)
         {
+
             using (var db = new MovieStoreDbContext())
             {
                 db.Customers.Add(entity);
@@ -39,12 +40,12 @@ namespace MovieStoreDAL
 
         public Customer Get(int id)
         {
-            return db.Customers.Include("Address").FirstOrDefault(a => a.Id == id);
+            return db.Customers.AsNoTracking().Include("Address").FirstOrDefault(a => a.Id == id);
         }
 
         public IEnumerable<Customer> GetAll()
         {
-            return db.Customers;
+            return db.Customers.AsNoTracking().ToList();
         }
 
         public void Remove(int id)

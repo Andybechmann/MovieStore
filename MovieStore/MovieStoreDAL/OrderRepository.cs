@@ -15,7 +15,14 @@ namespace MovieStoreDAL
         {
             using (var db = new MovieStoreDbContext())
             {
-                entity.OrderLines.ForEach(x => db.Movies.Attach(x.Movie));
+                entity.OrderLines.ForEach(x =>
+                {
+                    if (db.Entry(x.Movie).State == EntityState.Detached)
+                    {
+                        db.Movies.Attach(x.Movie);
+                    }
+                });    
+
                 db.Customers.Attach(entity.Customer);
                 db.Orders.Add(entity);
                 db.SaveChanges();
