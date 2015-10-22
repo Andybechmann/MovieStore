@@ -60,10 +60,13 @@
                                             @Html.DisplayFor(modelItem => item.Movie.Title)
                                         </td>
                                         <td>
-                                            <div class="col-lg-offset-3">@Html.DisplayFor(modelItem => item.Amount)</div>
-                                            <div class="col-lg-1">
-                                                <a href="/User/Cart/RemoveAmount/@item.Movie.Id" class="btn btn-block pull-left" role="button">-</a>
-                                            </div>
+                                            <div class="col-lg-offset-2">@Html.DisplayFor(modelItem => item.Amount)</div>
+                                            @if (item.Amount > 1)
+                                            {
+                                                <div class="col-lg-1">
+                                                    <a href="/User/Cart/RemoveAmount/@item.Movie.Id" class="btn btn-block pull-left" role="button">-</a>
+                                                </div>
+                                            }
                                             <div class=" col-lg-offset-1 col-lg-1">
                                                 <a href="/User/Cart/AddAmount/@item.Movie.Id" class="btn btn-block pull-right" role="button">+</a>
                                             </div>
@@ -121,23 +124,3 @@
         </div>
     </div>
 </div>
-
-
-    @*<div class=" col-lg-offset-4 col-lg-2">
-            <a href="" class="btn btn-default  " role="button">New Customer</a>
-        </div>
-        <div class="col-lg-2">
-            <a href="" class="btn btn-default " role="button">Excisting Customer</a>
-        </div>*@
-
-                                            @*<table class="table">
-                                                    @foreach (var item in Model.GetOrderLines())
-                                                    {
-                                                        <tr>
-                                                            <td>
-                                                                @Html.DisplayFor(modelItem => item.Movie.Title)
-                                                            </td>
-                                                            <td>$@Html.DisplayFor(modelItem => item.Movie.Price)</td>
-                                                        </tr>
-                                                    }
-                                                </table>*@
