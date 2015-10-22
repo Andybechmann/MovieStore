@@ -33,6 +33,7 @@ namespace MovieStoreAdminUI.Controllers
                 OrderLines = cart.orderLines
             };
             _facade._orderRepository.Add(order);
+            cart.CleanCart();
             return View("Confirmed");
         }
 

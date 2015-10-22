@@ -61,5 +61,10 @@ namespace MovieStoreUserUI.Models
             return sum;
         }
 
+        public void CleanCart()
+        {
+            orderLines = null;
+        }
+
     }
 }

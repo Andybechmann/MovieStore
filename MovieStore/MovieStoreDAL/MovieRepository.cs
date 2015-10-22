@@ -33,14 +33,16 @@ namespace MovieStoreDAL
         public Movie Get(int id)
         {
            
-            return db.Movies.FirstOrDefault(a => a.Id == id);
+            return db.Movies.AsNoTracking().FirstOrDefault(a => a.Id == id);
         }
 
         public IEnumerable<Movie> GetAll()
         {
             using (var db = new MovieStoreDbContext())
             {
-                return db.Movies.ToList();
+                IEnumerable<Movie> movie = db.Movies.AsNoTracking().ToList();
+                
+                return movie;
             }
         }
 

@@ -40,12 +40,12 @@ namespace MovieStoreDAL
 
         public Customer Get(int id)
         {
-            return db.Customers.Include("Address").FirstOrDefault(a => a.Id == id);
+            return db.Customers.AsNoTracking().Include("Address").FirstOrDefault(a => a.Id == id);
         }
 
         public IEnumerable<Customer> GetAll()
         {
-            return db.Customers;
+            return db.Customers.AsNoTracking().ToList();
         }
 
         public void Remove(int id)
