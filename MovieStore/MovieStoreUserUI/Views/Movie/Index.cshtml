@@ -20,8 +20,8 @@
                     <div class="col-md-6 col-lg-6">
                         <a href="/User/Movie/Details/@movie.Id" class="btn btn-default btn-block " role="button">Details</a>
                     </div>
-                    <div class="col-md-offset-5">
-                        <p style="font-size:150%">Price: @Html.DisplayFor(modelItem => movie.Price)</p>
+                    <div class="col-sm-offset-5 col-md-offset-4 col-lg-offset-4">
+                        <p style="font-size:150%">@movie.Price.ToString("C")</p>
                     </div>
                 </div>
             </div>

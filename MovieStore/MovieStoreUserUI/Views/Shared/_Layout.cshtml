@@ -34,26 +34,25 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> @cartCount - Items<span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-cart" role="menu">
                             <li>
-                                @if ((ShoppingCart)Session["ShoppingCart"] != null)
-                                {
-                                    foreach (var item in ((ShoppingCart)Session["ShoppingCart"]).GetOrderLines())
+                                <table class="table">
+                                    @if ((ShoppingCart)Session["ShoppingCart"] != null)
                                     {
-                                        <span class="item">
-                                            <span class="item-left">
-                                                <img src="@Html.DisplayFor(modelItem => item.Movie.ImageUrl)" class="img-responsive" alt="" height="25%" width="25%" />
-                                                <span class="item-info">
-                                                    <span>@Html.DisplayFor(modelItem => item.Movie.Title)</span>
-                                                    <span>@Html.DisplayFor(modelItem => item.Movie.Price)</span>
-                                                </span>
-                                            </span>
-                                            <span class="item-right">
-                                                <button class="btn btn-xs btn-danger pull-right">x</button>
-                                            </span>
-                                        </span>
+
+                                        foreach (var item in ((ShoppingCart)Session["ShoppingCart"]).GetOrderLines())
+                                        {
+                                            <tr>
+                                                <td><img src="@Html.DisplayFor(modelItem => item.Movie.ImageUrl)" class="img-thumbnail" alt="" height="50" width="50" /></td>
+                                                <td><text>@Html.DisplayFor(modelItem => item.Movie.Title)</text></td>
+                                                <td><text>@Html.DisplayFor(modelItem => item.Amount)</text></td>
+                                                <td><a href="/User/Cart/Delete/@item.Movie.Id" class="btn btn-xs btn-danger pull-right" role="button">x</a></td>
+                                            </tr>
+                                        }
+
                                     }
-                                } 
-                                
+                                </table>
                             </li>
+
+
 
                             <li class="divider"></li>
                             <li><a class="text-center"  href="/User/Cart/Index">View Cart</a></li>

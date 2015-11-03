@@ -7,35 +7,6 @@
 
 <h2>Cart</h2>
 
-@*<table class="table">
-        <tr>
-            <th>Movie</th>
-            <th>Amount</th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model.GetOrderLines()) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movie.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>$@Html.DisplayFor(modelItem => item.Movie.Price)</td>
-            <td>
-                @Html.ActionLink("Delete", "Delete", new {  id=item.Movie.Id })
-            </td>
-        </tr>
-    }
-
-    </table>
-    <div>
-        <a href="/User/Customers/Create" class="btn btn-success btn-block" role="button">Checkout <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
-    </div>*@
-
-
-
 <div class="container-fluid">
 
     <div class="row">
@@ -60,10 +31,13 @@
                                             @Html.DisplayFor(modelItem => item.Movie.Title)
                                         </td>
                                         <td>
-                                            <div class="col-lg-offset-3">@Html.DisplayFor(modelItem => item.Amount)</div>
-                                            <div class="col-lg-1">
-                                                <a href="/User/Cart/RemoveAmount/@item.Movie.Id" class="btn btn-block pull-left" role="button">-</a>
-                                            </div>
+                                            <div class="col-lg-offset-2">@Html.DisplayFor(modelItem => item.Amount)</div>
+                                            @if (item.Amount > 1)
+                                            {
+                                                <div class="col-lg-1">
+                                                    <a href="/User/Cart/RemoveAmount/@item.Movie.Id" class="btn btn-block pull-left" role="button">-</a>
+                                                </div>
+                                            }
                                             <div class=" col-lg-offset-1 col-lg-1">
                                                 <a href="/User/Cart/AddAmount/@item.Movie.Id" class="btn btn-block pull-right" role="button">+</a>
                                             </div>
@@ -96,7 +70,7 @@
                                     <p class="text-left">@Html.DisplayFor(modelItem => item.Movie.Title)</p>
                                 </div>
                                 <div class="col-md-2 col-lg-6">
-                                    <p class="text-right">@Html.DisplayFor(modelItem => item.Movie.Price)</p>
+                                    <p class="text-right">@item.GetOrdeLineSum().ToString("C")</p>
                                 </div>
                             }
                         </div>
@@ -121,23 +95,3 @@
         </div>
     </div>
 </div>
-
-
-    @*<div class=" col-lg-offset-4 col-lg-2">
-            <a href="" class="btn btn-default  " role="button">New Customer</a>
-        </div>
-        <div class="col-lg-2">
-            <a href="" class="btn btn-default " role="button">Excisting Customer</a>
-        </div>*@
-
-                                            @*<table class="table">
-                                                    @foreach (var item in Model.GetOrderLines())
-                                                    {
-                                                        <tr>
-                                                            <td>
-                                                                @Html.DisplayFor(modelItem => item.Movie.Title)
-                                                            </td>
-                                                            <td>$@Html.DisplayFor(modelItem => item.Movie.Price)</td>
-                                                        </tr>
-                                                    }
-                                                </table>*@
