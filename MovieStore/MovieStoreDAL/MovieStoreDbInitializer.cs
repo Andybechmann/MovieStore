@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace MovieStoreDAL
 {
-    public class MovieStoreDbInitializer : DropCreateDatabaseAlways<MovieStoreDbContext>
+    public class MovieStoreDbInitializer : DropCreateDatabaseIfModelChanges<MovieStoreDbContext>
     {
         protected override void Seed(MovieStoreDbContext context)
         {
