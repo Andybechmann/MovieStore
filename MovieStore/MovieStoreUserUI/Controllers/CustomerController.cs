@@ -27,7 +27,7 @@ namespace MovieStoreAdminUI.Controllers
                 {
                     df._customersRepository.Add(customer);
 
-                    return RedirectToAction("Index");
+                    return View("CheckEmail");
                 }
                 catch
                 {

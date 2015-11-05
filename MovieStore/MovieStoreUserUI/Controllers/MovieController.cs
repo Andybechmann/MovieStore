@@ -12,6 +12,7 @@ namespace MovieStoreAdminUI.Controllers
     {
         DALFacade facade = new DALFacade();
         // GET: Movie
+
         public ActionResult Index()
         {
             return View(facade._moviesRepository.GetAll());
