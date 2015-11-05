@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MovieStoreDAL.Abstarct;
+﻿using MovieStoreDAL.Abstarct;
 
 namespace MovieStoreDAL.Concrete
 {
@@ -11,20 +6,20 @@ namespace MovieStoreDAL.Concrete
     {
         public SampleService()
         {
-            this.context = new MovieStoreDbContext();
+            this.Context = new MovieStoreDbContext();
         }
 
-        private Service<MovieStoreDbContext, Customer> customers;
+        private Service<MovieStoreDbContext, Customer> _customers;
 
         public Service<MovieStoreDbContext, Customer> Customers
         {
             get
             {
-                if (customers == null)
+                if (_customers == null)
                 {
-                    customers = new Service<MovieStoreDbContext, Customer>(context);
+                    _customers = new Service<MovieStoreDbContext, Customer>(Context);
                 }
-                return customers;
+                return _customers;
             }
         }
 
@@ -36,7 +31,7 @@ namespace MovieStoreDAL.Concrete
             {
                 if (movies == null)
                 {
-                    movies = new Service<MovieStoreDbContext, Movie>(context);
+                    movies = new Service<MovieStoreDbContext, Movie>(Context);
                 }
                 return movies;
             }
@@ -49,7 +44,7 @@ namespace MovieStoreDAL.Concrete
             {
                 if (orders == null)
                 {
-                    orders = new Service<MovieStoreDbContext, Order>(context);
+                    orders = new Service<MovieStoreDbContext, Order>(Context);
                 }
                 return orders;
             }
@@ -62,7 +57,7 @@ namespace MovieStoreDAL.Concrete
             {
                 if (addresses == null)
                 {
-                    addresses = new Service<MovieStoreDbContext, Address>(context);
+                    addresses = new Service<MovieStoreDbContext, Address>(Context);
                 }
                 return addresses;
             }

@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using MovieStoreDAL.Abstarct;
 
 namespace MovieStoreDAL.Concrete
 {
-    public class Service<TContext, TEntity> : IService<TContext, TEntity>
+    public class Service<TContext, TEntity> : IService<TEntity>
         where TContext:DbContext where TEntity:class
     {
-        internal TContext context;
-        internal DbSet<TEntity> dbSet;
+        internal TContext Context;
+        internal DbSet<TEntity> DbSet;
 
         public Service(TContext context)
         {
-            this.context = context;
-            dbSet = context.Set<TEntity>();
+            Context = context;
+            DbSet = context.Set<TEntity>();
         }
         public virtual IEnumerable<TEntity> GetAll(
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, 
@@ -32,12 +30,12 @@ namespace MovieStoreDAL.Concrete
             Func<IQueryable<TEntity>,IOrderedQueryable<TEntity>> orderBy = null, 
             string includeProperties = "")
         {
-            IQueryable<TEntity> query = dbSet;
+            IQueryable<TEntity> query = DbSet;
             if (filter!=null)
             {
                 query = query.Where(filter);
             }
-            foreach (var includeProperty in includeProperties.Split( new char[] {','},StringSplitOptions.RemoveEmptyEntries))
+            foreach (var includeProperty in includeProperties.Split( new [] {','},StringSplitOptions.RemoveEmptyEntries))
             {
                 query = query.Include(includeProperty);
             }
@@ -53,7 +51,7 @@ namespace MovieStoreDAL.Concrete
         }
         public TEntity GetById(int id, string includeProperties = "")
         {
-            return dbSet.Find(id);
+            return DbSet.Find(id);
         }
         public TEntity GetOne(Expression<Func<TEntity, bool>> filter = null, string includeProperties = "")
         {
@@ -71,7 +69,7 @@ namespace MovieStoreDAL.Concrete
 
         public void Create(TEntity entity)
         {
-            dbSet.Add(entity);
+            DbSet.Add(entity);
         }
 
         public void Delete(int id)
@@ -82,19 +80,19 @@ namespace MovieStoreDAL.Concrete
 
         public void Delete(TEntity entity)
         {
-            if (context.Entry(entity).State == EntityState.Detached)
+            if (Context.Entry(entity).State == EntityState.Detached)
             {
-                dbSet.Attach(entity);
+                DbSet.Attach(entity);
             }
-            dbSet.Remove(entity);
+            DbSet.Remove(entity);
         }
         public void Update(TEntity entity)
         {
-            if (context.Entry(entity).State == EntityState.Detached)
+            if (Context.Entry(entity).State == EntityState.Detached)
             {
-                dbSet.Attach(entity);
+                DbSet.Attach(entity);
             }
-            context.Entry(entity).State = EntityState.Modified;
+            Context.Entry(entity).State = EntityState.Modified;
         }
 
         public int Count(Expression<Func<TEntity, bool>> filter = null)

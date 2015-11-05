@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieStoreDAL.Abstarct
 {
-    public interface IService<TContext,TEntity> 
-        where TContext : DbContext
-        where TEntity : class
+    public interface IService<TEntity> where TEntity : class
     {
         IEnumerable<TEntity> GetAll(
             Func< IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "");

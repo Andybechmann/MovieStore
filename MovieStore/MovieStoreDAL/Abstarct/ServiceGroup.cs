@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieStoreDAL.Abstarct
 {
     public abstract class ServiceGroup<TContext> : IDisposable where TContext:DbContext
     {
-        protected TContext context;
+        protected TContext Context;
 
         public virtual void Save()
         {
             try
             {
-                context.SaveChanges();
+                Context.SaveChanges();
             }
             catch (DbEntityValidationException exception)
             {
@@ -26,18 +22,18 @@ namespace MovieStoreDAL.Abstarct
         }
 #region Disposable
 
-        private bool disposed = false;
+        private bool _disposed;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!_disposed)
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    Context.Dispose();
                 }
             }
-            this.disposed = true;
+            _disposed = true;
         }
         public virtual void Dispose()
         {
