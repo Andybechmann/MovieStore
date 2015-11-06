@@ -5,12 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
+using MovieStoreDAL.Concrete;
 
 namespace MovieStoreAdminUI.Controllers
 {
     public class CartController : Controller
     {
-        DALFacade facade = new DALFacade();
+        //DALFacade facade = new DALFacade();
+        SampleService service = new SampleService();
         // GET: Cart
         public ActionResult Index()
         {
@@ -31,18 +33,22 @@ namespace MovieStoreAdminUI.Controllers
 
         public ActionResult AddAmount(int id)
         {
-            var movie = facade._moviesRepository.Get(id);
-            var cart = GetCart();
-            cart.AddOrderLine(movie, 1);
+
+            //var movie = facade._moviesRepository.Get(id);
+            Movie movie = service.Movies.GetById(id);
+            //var cart = GetCart();
+
+            GetCart().AddOrderLine(movie, 1);
 
             return RedirectToAction("Index");
         }
 
         public ActionResult RemoveAmount(int id)
         {
-            var movie = facade._moviesRepository.Get(id);
-            var cart = GetCart();
-            cart.RemoveAmount(movie, 1);
+            //var movie = facade._moviesRepository.Get(id);
+            //var cart = GetCart();
+            Movie movie = service.Movies.GetById(id);
+            GetCart().RemoveAmount(movie, 1);
 
             return RedirectToAction("Index");
         }
@@ -56,6 +62,12 @@ namespace MovieStoreAdminUI.Controllers
                 Session["ShoppingCart"] = cart;
             }
             return cart;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            service.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

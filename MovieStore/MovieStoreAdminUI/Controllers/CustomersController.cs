@@ -4,25 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
+using MovieStoreDAL.Concrete;
 
 namespace MovieStoreAdminUI.Controllers
 {
     public class CustomersController : Controller
     {
         //private CustomerRepository cr = new CustomerRepository();
-        private DALFacade df = new DALFacade();
+        //private DALFacade df = new DALFacade();
+        SampleService service = new SampleService();
 
         // GET: Customers
         public ActionResult Index()
         {
-            IEnumerable<Customer> customer = df._customersRepository.GetAll();
-            return View(customer);
+            //IEnumerable<Customer> customers = df._customersRepository.GetAll();
+            IEnumerable<Customer> customers = service.Customers.GetAll();
+            return View(customers);
         }
 
         // GET: Customers/Details/5
         public ActionResult Details(int id)
         {
-            var customer = df._customersRepository.Get(id);
+            //var customer = df._customersRepository.Get(id);
+            Customer customer = service.Customers.GetById(id);
             return View(customer);
         }
 
@@ -38,8 +42,9 @@ namespace MovieStoreAdminUI.Controllers
         {
             try
             {
-                df._customersRepository.Add(customer);
-
+                //df._customersRepository.Add(customer);
+                service.Customers.Create(customer);
+                service.Save();
                 return RedirectToAction("Index");
             }
             catch
@@ -51,7 +56,8 @@ namespace MovieStoreAdminUI.Controllers
         // GET: Customers/Edit/5
         public ActionResult Edit(int id)
         {
-            Customer customer = df._customersRepository.Get(id);
+            //Customer customer = df._customersRepository.Get(id);
+            Customer customer = service.Customers.GetById(id);
             return View(customer);
         }
 
@@ -61,8 +67,9 @@ namespace MovieStoreAdminUI.Controllers
         {
             try
             {
-                df._customersRepository.Edit(customer);
-
+                //df._customersRepository.Edit(customer);
+                service.Customers.Update(customer);
+                service.Save();
                 return RedirectToAction("Index");
             }
             catch
@@ -74,7 +81,8 @@ namespace MovieStoreAdminUI.Controllers
         // GET: Customers/Delete/5
         public ActionResult Delete(int id)
         {
-           Customer customer = df._customersRepository.Get(id);
+           //Customer customer = df._customersRepository.Get(id);
+            Customer customer = service.Customers.GetById(id);
             return View(customer);
         }
 
@@ -84,14 +92,24 @@ namespace MovieStoreAdminUI.Controllers
         {
             try
             {
-                Customer customer = df._customersRepository.Get(id);
-                df._customersRepository.Remove(id);
+                //Customer customer = df._customersRepository.Get(id);
+                //df._customersRepository.Remove(id);
+                //Customer customer = service.Customers.GetById(id);
+                service.Customers.Delete(id);
+                service.Save();
+
                 return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            service.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

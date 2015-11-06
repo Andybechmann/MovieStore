@@ -4,16 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
+using MovieStoreDAL.Concrete;
 
 namespace MovieStoreUserUI.Models
 {
     public class MovieViewModel
     {
-        DALFacade repository = new DALFacade();
+        //DALFacade repository = new DALFacade();
+        SampleService service = new SampleService();
 
         public IEnumerable<Movie> Movies
         {
-            get { return repository._moviesRepository.GetAll(); }
+            get { return service.Movies.GetAll(); }
         }
 
         public Movie SelectedMovie { get; set; }
