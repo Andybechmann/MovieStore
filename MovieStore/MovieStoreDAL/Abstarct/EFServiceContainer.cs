@@ -4,7 +4,7 @@ using System.Data.Entity.Validation;
 
 namespace MovieStoreDAL.Abstarct
 {
-    public abstract class ServiceGroup<TContext> : IDisposable where TContext:DbContext
+    public abstract class EFServiceContainer<TContext> : IDisposable where TContext:DbContext
     {
         protected TContext Context;
 

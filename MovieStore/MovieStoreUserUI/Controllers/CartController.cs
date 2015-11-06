@@ -12,7 +12,7 @@ namespace MovieStoreAdminUI.Controllers
     public class CartController : Controller
     {
         //DALFacade facade = new DALFacade();
-        SampleService service = new SampleService();
+        SampleEFService _efService = new SampleEFService();
         // GET: Cart
         public ActionResult Index()
         {
@@ -35,7 +35,7 @@ namespace MovieStoreAdminUI.Controllers
         {
 
             //var movie = facade._moviesRepository.Get(id);
-            Movie movie = service.Movies.GetById(id);
+            Movie movie = _efService.Movies.GetById(id);
             //var cart = GetCart();
 
             GetCart().AddOrderLine(movie, 1);
@@ -47,7 +47,7 @@ namespace MovieStoreAdminUI.Controllers
         {
             //var movie = facade._moviesRepository.Get(id);
             //var cart = GetCart();
-            Movie movie = service.Movies.GetById(id);
+            Movie movie = _efService.Movies.GetById(id);
             GetCart().RemoveAmount(movie, 1);
 
             return RedirectToAction("Index");
@@ -66,7 +66,7 @@ namespace MovieStoreAdminUI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            service.Dispose();
+            _efService.Dispose();
             base.Dispose(disposing);
         }
     }

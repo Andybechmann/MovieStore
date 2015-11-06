@@ -11,14 +11,14 @@ namespace MovieStoreUI.Controllers
     public class OrdersController : Controller
     {
         //private MovieStoreDbContext db = new MovieStoreDbContext();
-        SampleService service = new SampleService();
+        SampleEFService _efService = new SampleEFService();
 
         // GET: Orders
         public ActionResult Index()
         {
             //var orders = db.Orders.Include(o => o.Customer).Include(o=>o.OrderLines);
             //List<Order> ordersInList = orders.ToList();
-            IEnumerable<Order> orders = service.Orders.GetAll();
+            IEnumerable<Order> orders = _efService.Orders.GetAll();
             return View(orders);
         }
 
@@ -30,7 +30,7 @@ namespace MovieStoreUI.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Order order = db.Orders.Find(id);
-            Order order = service.Orders.GetFirst(o => o.Id == id);
+            Order order = _efService.Orders.GetFirst(o => o.Id == id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -47,7 +47,7 @@ namespace MovieStoreUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = service.Orders.GetById((int) id);
+            Order order = _efService.Orders.GetById((int) id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -64,14 +64,14 @@ namespace MovieStoreUI.Controllers
             //db.Orders.Remove(order);
             //db.SaveChanges();
 
-            service.Orders.Delete(id);
-            service.Save();
+            _efService.Orders.Delete(id);
+            _efService.Save();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            service.Dispose();
+            _efService.Dispose();
             base.Dispose(disposing);
         }
     }

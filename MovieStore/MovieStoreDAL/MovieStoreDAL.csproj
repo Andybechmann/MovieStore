@@ -49,11 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstarct\IService.cs" />
-    <Compile Include="Abstarct\ServiceGroup.cs" />
+    <Compile Include="Abstarct\IEFService.cs" />
+    <Compile Include="Abstarct\EFServiceContainer.cs" />
     <Compile Include="Address.cs" />
-    <Compile Include="Concrete\SampleService.cs" />
-    <Compile Include="Concrete\Service.cs" />
+    <Compile Include="Concrete\SampleEfService.cs" />
+    <Compile Include="Concrete\EFService.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerRepository.cs" />
     <Compile Include="DALFacade.cs" />

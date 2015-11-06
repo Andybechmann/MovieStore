@@ -13,17 +13,17 @@ namespace MovieStoreDAL
     {
 
         //private MovieStoreDbContext db;
-        private readonly SampleService service;
+        private readonly SampleEFService _efService;
 
         public CustomerRepository()
         {
             //db = new MovieStoreDbContext();
-            service = new SampleService();
+            _efService = new SampleEFService();
         }
            
         public void Add(Customer entity)
         {
-            service.Customers.Create(entity);
+            _efService.Customers.Create(entity);
             //using (var db = new MovieStoreDbContext())
             //{
             //    db.Customers.Add(entity);
@@ -33,7 +33,7 @@ namespace MovieStoreDAL
 
         public void Edit(Customer entity)
         {
-            service.Customers.Update(entity);
+            _efService.Customers.Update(entity);
             //db.Entry(entity).State = EntityState.Modified;
             //var customerAddress = (from a in db.Addresses
             //                      where a.Id == entity.Address.Id
@@ -49,19 +49,19 @@ namespace MovieStoreDAL
 
         public Customer Get(int id)
         {
-            return service.Customers.GetById(id,"Address");
+            return _efService.Customers.GetById(id,"Address");
             //return db.Customers.Include("Address").FirstOrDefault(a => a.Id == id);
         }
 
         public IEnumerable<Customer> GetAll()
         {
-            return service.Customers.GetAll();
+            return _efService.Customers.GetAll();
             //return db.Customers;
         }
 
         public void Remove(int id)
         {
-            service.Customers.Delete(id);
+            _efService.Customers.Delete(id);
             //var customer = this.Get(id);
             //Address address = customer.Address;
             //db.Customers.Remove(customer);

@@ -11,11 +11,11 @@ namespace MovieStoreUserUI.Models
     public class MovieViewModel
     {
         //DALFacade repository = new DALFacade();
-        SampleService service = new SampleService();
+        SampleEFService _efService = new SampleEFService();
 
         public IEnumerable<Movie> Movies
         {
-            get { return service.Movies.GetAll(); }
+            get { return _efService.Movies.GetAll(); }
         }
 
         public Movie SelectedMovie { get; set; }

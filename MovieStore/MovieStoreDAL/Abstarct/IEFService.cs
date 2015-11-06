@@ -5,10 +5,11 @@ using System.Linq.Expressions;
 
 namespace MovieStoreDAL.Abstarct
 {
-    public interface IService<TEntity> where TEntity : class
+    public interface IEFService<TEntity> where TEntity : class
     {
         IEnumerable<TEntity> GetAll(
-            Func< IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "");
+            Func< IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, 
+            string includeProperties = "");
 
         IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
@@ -31,10 +32,10 @@ namespace MovieStoreDAL.Abstarct
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");
 
-        void Create(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(int id);
-        void Delete(TEntity entity);
+        TEntity Create(TEntity entity);
+        TEntity Update(TEntity entity);
+        TEntity Delete(int id);
+        TEntity Delete(TEntity entity);
         int Count(Expression<Func<TEntity, bool>> filter = null);
         bool Any(Expression<Func<TEntity,bool>> filter = null );
     }

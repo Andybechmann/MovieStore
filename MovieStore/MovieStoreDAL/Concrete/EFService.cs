@@ -7,13 +7,13 @@ using MovieStoreDAL.Abstarct;
 
 namespace MovieStoreDAL.Concrete
 {
-    public class Service<TContext, TEntity> : IService<TEntity>
+    public class EFService<TContext, TEntity> : IEFService<TEntity>
         where TContext:DbContext where TEntity:class
     {
         internal TContext Context;
         internal DbSet<TEntity> DbSet;
 
-        public Service(TContext context)
+        public EFService(TContext context)
         {
             Context = context;
             DbSet = context.Set<TEntity>();
@@ -67,32 +67,33 @@ namespace MovieStoreDAL.Concrete
             return Get(filter,orderBy,includeProperties).LastOrDefault();
         }
 
-        public void Create(TEntity entity)
+        public TEntity Create(TEntity entity)
         {
-            DbSet.Add(entity);
+            return DbSet.Add(entity);
         }
 
-        public void Delete(int id)
+        public TEntity Delete(int id)
         {
             var entity = GetById(id);
-            Delete(entity);
+            return Delete(entity);
         }
 
-        public void Delete(TEntity entity)
+        public TEntity Delete(TEntity entity)
         {
             if (Context.Entry(entity).State == EntityState.Detached)
             {
                 DbSet.Attach(entity);
             }
-            DbSet.Remove(entity);
+            return DbSet.Remove(entity);
         }
-        public void Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
             if (Context.Entry(entity).State == EntityState.Detached)
             {
                 DbSet.Attach(entity);
             }
             Context.Entry(entity).State = EntityState.Modified;
+            return entity;
         }
 
         public int Count(Expression<Func<TEntity, bool>> filter = null)

@@ -11,16 +11,16 @@ namespace MovieStoreDAL
     public class OrderRepository : IRepository<Order>
     {
         //private MovieStoreDbContext db = new MovieStoreDbContext();
-        private readonly SampleService service;
+        private readonly SampleEFService _efService;
 
         public OrderRepository()
         {
-            service = new SampleService();
+            _efService = new SampleEFService();
         }
 
         public void Add(Order entity)
         {
-            service.Orders.Create(entity);
+            _efService.Orders.Create(entity);
             //using (var db = new MovieStoreDbContext())
             //{
             //    entity.OrderLines.ForEach(x=> db.Movies.Attach(x.Movie));
@@ -32,26 +32,26 @@ namespace MovieStoreDAL
 
         public void Edit(Order entity)
         {
-            service.Orders.Update(entity);
+            _efService.Orders.Update(entity);
             //db.Entry(entity).State = EntityState.Modified;
             //db.SaveChanges();
         }
 
         public Order Get(int id)
         {
-            return service.Orders.GetById(id);
+            return _efService.Orders.GetById(id);
             //return db.Orders.FirstOrDefault(a => a.Id == id);
         }
 
         public IEnumerable<Order> GetAll()
         {
-            return service.Orders.GetAll();
+            return _efService.Orders.GetAll();
             //return db.Orders;
         }
 
         public void Remove(int id)
         {
-            service.Orders.Delete(id);
+            _efService.Orders.Delete(id);
             //var a = this.Get(id);
             //db.Orders.Remove(a);
         }

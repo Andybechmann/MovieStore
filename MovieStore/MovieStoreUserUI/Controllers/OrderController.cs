@@ -12,14 +12,14 @@ namespace MovieStoreAdminUI.Controllers
     public class OrderController : Controller
     {
         //DALFacade _facade = new DALFacade();
-        SampleService service = new SampleService();
+        SampleEFService _efService = new SampleEFService();
         
         [HttpGet]
         public ActionResult Buy(ShoppingCart cart)
         {
             Customer customer = (Customer) TempData.Peek("customer");
             int customerId = customer.Id;
-            customer = service.Customers.GetById(customerId, "Address");
+            customer = _efService.Customers.GetById(customerId, "Address");
             cart.Customer = customer;
 
             return View(cart);
@@ -36,8 +36,8 @@ namespace MovieStoreAdminUI.Controllers
                 Date = DateTime.Now,
                 OrderLines = cart.orderLines
             };
-            service.Orders.Create(order);
-            service.Save();
+            _efService.Orders.Create(order);
+            _efService.Save();
             //_facade._orderRepository.Add(order);
             cart.CleanCart();
             return View("Confirmed");
@@ -45,7 +45,7 @@ namespace MovieStoreAdminUI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            service.Dispose();
+            _efService.Dispose();
             base.Dispose(disposing);
         }
     }

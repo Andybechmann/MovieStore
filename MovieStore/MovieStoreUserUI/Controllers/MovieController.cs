@@ -13,26 +13,26 @@ namespace MovieStoreAdminUI.Controllers
     {
         //DALFacade facade = new DALFacade();
         // GET: Movie
-        SampleService service = new SampleService();
+        SampleEFService _efService = new SampleEFService();
 
         public ActionResult Index()
         {
             //return View(facade._moviesRepository.GetAll());
-            return View(service.Movies.GetAll());
+            return View(_efService.Movies.GetAll());
         }
 
         // GET: Movie/Details/5
         public ActionResult Details(int id)
         {
             //Movie movie = facade._moviesRepository.Get(movieId);
-            Movie movie = service.Movies.GetById(id);
+            Movie movie = _efService.Movies.GetById(id);
             return View(movie);
         }
 
         public ActionResult AddToCart(ShoppingCart cart, int Id)
         {
             //var movie = facade._moviesRepository.Get(movieId);
-            Movie movie = service.Movies.GetById(Id);
+            Movie movie = _efService.Movies.GetById(Id);
 
             //var cart = GetCart();
             cart.AddOrderLine(movie, 1);
@@ -54,7 +54,7 @@ namespace MovieStoreAdminUI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            service.Dispose();
+            _efService.Dispose();
             base.Dispose(disposing);
         }
     }

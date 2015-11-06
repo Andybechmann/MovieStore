@@ -13,6 +13,7 @@ namespace MovieStoreDAL
     
         public MovieStoreDbContext() : base("MusicStoreDbContext")
         {
+            Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer(new MovieStoreDbInitializer());
         }
 

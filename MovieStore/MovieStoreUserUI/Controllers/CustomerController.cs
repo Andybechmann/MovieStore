@@ -13,7 +13,7 @@ namespace MovieStoreAdminUI.Controllers
         {
             //private CustomerRepository cr = new CustomerRepository();
             //private DALFacade df = new DALFacade();
-            SampleService service = new SampleService(); 
+            SampleEFService _efService = new SampleEFService(); 
 
             // GET: Customers/Create
             public ActionResult Create()
@@ -27,8 +27,8 @@ namespace MovieStoreAdminUI.Controllers
             {
                 try
                 {
-                    service.Customers.Create(customer);
-                    service.Save();
+                    _efService.Customers.Create(customer);
+                    _efService.Save();
                     //df._customersRepository.Add(customer);
 
                     return View("CheckEmail");
@@ -43,7 +43,7 @@ namespace MovieStoreAdminUI.Controllers
             public ActionResult Edit(int id)
             {
                 //Customer customer = df._customersRepository.Get(id);
-                Customer customer = service.Customers.GetById(id);
+                Customer customer = _efService.Customers.GetById(id);
 
                  return View(customer);
             }
@@ -56,8 +56,8 @@ namespace MovieStoreAdminUI.Controllers
                 try
                 {
                     //df._customersRepository.Edit(customer);
-                    service.Customers.Update(customer);
-                    service.Save();
+                    _efService.Customers.Update(customer);
+                    _efService.Save();
                     return RedirectToAction("Index");
                 }
                 catch
@@ -74,7 +74,7 @@ namespace MovieStoreAdminUI.Controllers
         public ActionResult CheckEmail(string email)
         {
             //Customer customer = df._customersRepository.GetAll().FirstOrDefault(c => c.Email == email);
-            Customer customer = service.Customers.GetFirst(c => c.Email == email);
+            Customer customer = _efService.Customers.GetFirst(c => c.Email == email);
             if (customer != null)
             {
                 ViewBag.Exist = "Customer with email is exist";
@@ -89,7 +89,7 @@ namespace MovieStoreAdminUI.Controllers
 
             protected override void Dispose(bool disposing)
             {
-                service.Dispose();
+                _efService.Dispose();
                 base.Dispose(disposing);
             }
         }

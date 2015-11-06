@@ -15,13 +15,13 @@ namespace MovieStoreUI.Controllers
     {
         
         //private DALFacade df = new DALFacade();
-        private SampleService service = new SampleService();
+        private SampleEFService _efService = new SampleEFService();
 
         // GET: Movies
         public ActionResult Index()
         {
             //var movies = df._moviesRepository.GetAll();
-            IEnumerable<Movie> movies = service.Movies.GetAll();
+            IEnumerable<Movie> movies = _efService.Movies.GetAll();
             return View(movies);
          
         }
@@ -31,7 +31,7 @@ namespace MovieStoreUI.Controllers
         {
           
             //Movie movie = df._moviesRepository.Get(id);
-            Movie movie = service.Movies.GetById(id);
+            Movie movie = _efService.Movies.GetById(id);
 
             if (movie == null)
             {
@@ -56,8 +56,8 @@ namespace MovieStoreUI.Controllers
             if (ModelState.IsValid)
             {
                 //df._moviesRepository.Add(movie);
-                service.Movies.Create(movie);
-                service.Save();
+                _efService.Movies.Create(movie);
+                _efService.Save();
              
                 return RedirectToAction("Index");
             }
@@ -70,7 +70,7 @@ namespace MovieStoreUI.Controllers
         {
 
             //Movie movie = df._moviesRepository.Get(id);
-            Movie movie = service.Movies.GetById(id);
+            Movie movie = _efService.Movies.GetById(id);
             if (movie == null)
             {
                 return HttpNotFound();
@@ -88,8 +88,8 @@ namespace MovieStoreUI.Controllers
             if (ModelState.IsValid)
             {
                 //df._moviesRepository.Edit(movie);
-                service.Movies.Update(movie);
-                service.Save();
+                _efService.Movies.Update(movie);
+                _efService.Save();
                 return RedirectToAction("Index");
             }
             return View(movie);
@@ -116,8 +116,8 @@ namespace MovieStoreUI.Controllers
             
             //df._moviesRepository.Remove(id);
             //Movie movie = df._moviesRepository.Get(id);
-            service.Movies.Delete(id);
-            service.Save();
+            _efService.Movies.Delete(id);
+            _efService.Save();
             
             TempData["message"] = string.Format("Was deleted");
             
@@ -126,7 +126,7 @@ namespace MovieStoreUI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            service.Dispose();
+            _efService.Dispose();
             base.Dispose(disposing);
         }
     }
