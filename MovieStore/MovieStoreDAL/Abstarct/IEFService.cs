@@ -16,8 +16,6 @@ namespace MovieStoreDAL.Abstarct
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");
 
-        TEntity GetById(int id, string includeProperties = "");
-
         TEntity GetOne(
             Expression<Func<TEntity, bool>> filter = null,
             string includeProperties = "");
