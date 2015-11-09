@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
 using MovieStoreDAL.Concrete;
-
+using MovieStoreDAL.Infrastructure;
 
 namespace MovieStoreUI.Controllers
 {
@@ -15,13 +15,14 @@ namespace MovieStoreUI.Controllers
     {
         
         //private DALFacade df = new DALFacade();
-        private SampleEFService _efService = new SampleEFService();
+        //private SampleEFService _efService = new SampleEFService();
+        ServiceGateway<Movie> service = new ServiceGateway<Movie>("api/movies/");
 
         // GET: Movies
         public ActionResult Index()
         {
-            //var movies = df._moviesRepository.GetAll();
-            IEnumerable<Movie> movies = _efService.Movies.GetAll();
+            IEnumerable<Movie> movies = service.GetAll();
+            //IEnumerable<Movie> movies = _efService.Movies.GetAll();
             return View(movies);
          
         }
@@ -29,9 +30,8 @@ namespace MovieStoreUI.Controllers
         // GET: Movies/Details/5
         public ActionResult Details(int id)
         {
-          
-            //Movie movie = df._moviesRepository.Get(id);
-            Movie movie = _efService.Movies.GetById(id);
+            Movie movie = service.GetOne(id);
+            //Movie movie = _efService.Movies.GetById(id);
 
             if (movie == null)
             {
@@ -55,9 +55,9 @@ namespace MovieStoreUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                //df._moviesRepository.Add(movie);
-                _efService.Movies.Create(movie);
-                _efService.Save();
+                service.CreateOne(movie);
+                //_efService.Movies.Create(movie);
+                //_efService.Save();
              
                 return RedirectToAction("Index");
             }
@@ -68,9 +68,8 @@ namespace MovieStoreUI.Controllers
         // GET: Movies/Edit/5
         public ActionResult Edit(int id)
         {
-
-            //Movie movie = df._moviesRepository.Get(id);
-            Movie movie = _efService.Movies.GetById(id);
+            Movie movie = service.GetOne(id);
+            //Movie movie = _efService.Movies.GetById(id);
             if (movie == null)
             {
                 return HttpNotFound();
@@ -87,25 +86,15 @@ namespace MovieStoreUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                //df._moviesRepository.Edit(movie);
-                _efService.Movies.Update(movie);
-                _efService.Save();
+                service.Update(movie);
+                //_efService.Movies.Update(movie);
+                //_efService.Save();
                 return RedirectToAction("Index");
             }
             return View(movie);
         }
 
-        // GET: Movies/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-
-        //    Movie movie = df._moviesRepository.Get(id);
-        //    if (movie == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(movie);
-        //}
+     
 
         // POST: Movies/Delete/5
         //[HttpPost, ActionName("Delete")]
@@ -113,11 +102,10 @@ namespace MovieStoreUI.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            
-            //df._moviesRepository.Remove(id);
-            //Movie movie = df._moviesRepository.Get(id);
-            _efService.Movies.Delete(id);
-            _efService.Save();
+            service.Delete(id);
+           
+            //_efService.Movies.Delete(id);
+            //_efService.Save();
             
             TempData["message"] = string.Format("Was deleted");
             
@@ -126,7 +114,7 @@ namespace MovieStoreUI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            _efService.Dispose();
+            //_efService.Dispose();
             base.Dispose(disposing);
         }
     }

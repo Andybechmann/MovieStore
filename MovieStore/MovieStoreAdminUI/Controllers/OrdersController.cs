@@ -1,24 +1,25 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using MovieStoreDAL;
 using MovieStoreDAL.Concrete;
+using MovieStoreDAL.Infrastructure;
 
 namespace MovieStoreUI.Controllers
 {
     public class OrdersController : Controller
     {
-        //private MovieStoreDbContext db = new MovieStoreDbContext();
-        SampleEFService _efService = new SampleEFService();
+        //SampleEFService _efService = new SampleEFService();
+        ServiceGateway<Order> service = new ServiceGateway<Order>("api/orders/");
 
         // GET: Orders
         public ActionResult Index()
         {
-            //var orders = db.Orders.Include(o => o.Customer).Include(o=>o.OrderLines);
-            //List<Order> ordersInList = orders.ToList();
-            IEnumerable<Order> orders = _efService.Orders.GetAll();
+            IEnumerable<Order> orders = service.GetAll();
+            //IEnumerable<Order> orders = _efService.Orders.GetAll();
             return View(orders);
         }
 
@@ -29,8 +30,8 @@ namespace MovieStoreUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Order order = db.Orders.Find(id);
-            Order order = _efService.Orders.GetFirst(o => o.Id == id);
+            Order order = service.GetOne((int)id);
+            //Order order = _efService.Orders.GetFirst(o => o.Id == id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -47,7 +48,8 @@ namespace MovieStoreUI.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = _efService.Orders.GetById((int) id);
+            Order order = service.GetOne((int)id);
+            //Order order = _efService.Orders.GetById((int) id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -60,18 +62,16 @@ namespace MovieStoreUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //Order order = db.Orders.Find(id);
-            //db.Orders.Remove(order);
-            //db.SaveChanges();
 
-            _efService.Orders.Delete(id);
-            _efService.Save();
+            service.Delete(id);
+            //_efService.Orders.Delete(id);
+            //_efService.Save();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            _efService.Dispose();
+            //_efService.Dispose();
             base.Dispose(disposing);
         }
     }

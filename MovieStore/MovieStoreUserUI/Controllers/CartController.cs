@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
 using MovieStoreDAL.Concrete;
+using MovieStoreDAL.Infrastructure;
 
 namespace MovieStoreAdminUI.Controllers
 {
@@ -13,6 +14,8 @@ namespace MovieStoreAdminUI.Controllers
     {
         //DALFacade facade = new DALFacade();
         SampleEFService _efService = new SampleEFService();
+        
+
         // GET: Cart
         public ActionResult Index()
         {

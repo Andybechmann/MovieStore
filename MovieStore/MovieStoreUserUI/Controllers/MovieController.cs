@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
 using MovieStoreDAL.Concrete;
+using MovieStoreDAL.Infrastructure;
 using MovieStoreUserUI.Models;
 
 namespace MovieStoreAdminUI.Controllers
@@ -13,27 +14,28 @@ namespace MovieStoreAdminUI.Controllers
     {
         //DALFacade facade = new DALFacade();
         // GET: Movie
-        SampleEFService _efService = new SampleEFService();
+        //SampleEFService _efService = new SampleEFService();
+        ServiceGateway<Movie> service = new ServiceGateway<Movie>("api/orders/");
 
         public ActionResult Index()
         {
             //return View(facade._moviesRepository.GetAll());
-            return View(_efService.Movies.GetAll());
+            IEnumerable<Movie> movies = service.GetAll();
+            return View(service.GetAll());
         }
 
         // GET: Movie/Details/5
         public ActionResult Details(int id)
         {
-            //Movie movie = facade._moviesRepository.Get(movieId);
-            Movie movie = _efService.Movies.GetById(id);
+            //Movie movie = _efService.Movies.GetById(id);
+            Movie movie = service.GetOne(id);
             return View(movie);
         }
 
         public ActionResult AddToCart(ShoppingCart cart, int Id)
         {
-            //var movie = facade._moviesRepository.Get(movieId);
-            Movie movie = _efService.Movies.GetById(Id);
-
+            //Movie movie = _efService.Movies.GetById(Id);
+            Movie movie = service.GetOne(Id);
             //var cart = GetCart();
             cart.AddOrderLine(movie, 1);
 
@@ -54,7 +56,7 @@ namespace MovieStoreAdminUI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            _efService.Dispose();
+            //_efService.Dispose();
             base.Dispose(disposing);
         }
     }
