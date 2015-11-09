@@ -21,9 +21,13 @@ namespace WebApiDataStorage.Controllers
         // GET: api/Customers
         public HttpResponseMessage GetCustomers()
         {
+            return GetCustomers("");
+        }
+        public HttpResponseMessage GetCustomers(string properties)
+        {
             try
             {
-                IEnumerable<Customer> customers = service.Customers.GetAll();
+                IEnumerable<Customer> customers = service.Customers.GetAll(null,properties);
                 if (customers.Count() > 0)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, customers);

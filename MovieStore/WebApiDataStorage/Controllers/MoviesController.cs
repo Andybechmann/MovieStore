@@ -14,15 +14,19 @@ namespace WebApiDataStorage.Controllers
         SampleEFService service = new SampleEFService();
 
         // GET: api/Movies
+
         public HttpResponseMessage GetMovies()
+        {
+            return GetMovies("");
+        }
+        public HttpResponseMessage GetMovies(string properties)
         {
             try
             {
-                IEnumerable<Movie> movies = service.Movies.GetAll();
-                var enumerable = movies as IList<Movie> ?? movies.ToList();
-                if (enumerable.Any())
+                IEnumerable<Movie> movies = service.Movies.GetAll(null,properties);
+                if (movies.Any())
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, enumerable);
+                    return Request.CreateResponse(HttpStatusCode.OK, movies);
                 }
                 return Request.CreateResponse(HttpStatusCode.NotFound, "Movies not found");
             }
