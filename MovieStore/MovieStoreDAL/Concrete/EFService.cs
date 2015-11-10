@@ -51,7 +51,6 @@ namespace MovieStoreDAL.Concrete
         }
         public TEntity GetById(int id, string includeProperties = "")
         {
-            return DbSet.Find(id);
         }
         public TEntity GetOne(Expression<Func<TEntity, bool>> filter = null, string includeProperties = "")
         {

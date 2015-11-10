@@ -41,7 +41,11 @@ namespace WebApiDataStorage.Controllers
         }
 
         // GET: api/Customers/5
+<<<<<<< HEAD
+        public HttpResponseMessage GetCustomer(int id,string properties)
+=======
         public HttpResponseMessage GetCustomer(int id, string properties = "")
+>>>>>>> origin/master
         {
             try
             {
