@@ -77,6 +77,14 @@ namespace MovieStoreAdminUI.Controllers
         public ActionResult CheckEmail(string email)
         {
             //Customer customer = _efService.Customers.GetFirst(c => c.Email == email);
+            IEnumerable<Customer> customers = service.GetAll();
+            Customer customer = null;
+            foreach (Customer customer1 in customers)
+            {
+                if (customer1.Email == email)
+                    customer = customer1;
+            } 
+
         
             if (customer != null)
             {
@@ -89,11 +97,5 @@ namespace MovieStoreAdminUI.Controllers
             }
             return View();
         }
-
-            protected override void Dispose(bool disposing)
-            {
-                //_efService.Dispose();
-                base.Dispose(disposing);
-            }
         }
     }

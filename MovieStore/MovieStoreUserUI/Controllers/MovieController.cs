@@ -15,7 +15,7 @@ namespace MovieStoreAdminUI.Controllers
         //DALFacade facade = new DALFacade();
         // GET: Movie
         //SampleEFService _efService = new SampleEFService();
-        ServiceGateway<Movie> service = new ServiceGateway<Movie>("api/orders/");
+        ServiceGateway<Movie> service = new ServiceGateway<Movie>("api/movies/");
 
         public ActionResult Index()
         {
@@ -42,22 +42,5 @@ namespace MovieStoreAdminUI.Controllers
             return RedirectToAction("Index");
         }
 
-
-        //private ShoppingCart GetCart()
-        //{
-        //    var cart = Session["ShoppingCart"] as ShoppingCart;
-        //    if (cart == null)
-        //    {
-        //        cart = new ShoppingCart();
-        //        Session["ShoppingCart"] = cart;
-        //    }
-        //    return cart;
-        //}
-
-        protected override void Dispose(bool disposing)
-        {
-            //_efService.Dispose();
-            base.Dispose(disposing);
-        }
     }
 }

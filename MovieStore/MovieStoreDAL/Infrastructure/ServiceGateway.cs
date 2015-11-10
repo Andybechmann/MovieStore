@@ -38,6 +38,14 @@ namespace MovieStoreDAL.Infrastructure
             return entity;
         }
 
+        public TEntity GetOne(int id,string properties)
+        {
+            HttpClient client = GetHttpClient();
+            HttpResponseMessage response = client.GetAsync(path + id.ToString() + "?properties=" + properties ).Result;
+            var entity = response.Content.ReadAsAsync<TEntity>().Result;
+            return entity;
+        }
+
         public HttpResponseMessage CreateOne(TEntity entity)
         {
             HttpClient client = GetHttpClient();

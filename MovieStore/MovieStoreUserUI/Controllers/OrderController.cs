@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
 using MovieStoreDAL.Concrete;
+using MovieStoreDAL.Infrastructure;
 using MovieStoreUserUI.Models;
 
 namespace MovieStoreAdminUI.Controllers
@@ -12,14 +13,20 @@ namespace MovieStoreAdminUI.Controllers
     public class OrderController : Controller
     {
         //DALFacade _facade = new DALFacade();
-        SampleEFService _efService = new SampleEFService();
-        
+        //SampleEFService _efService = new SampleEFService();
+        ServiceGateway<Order> service = new ServiceGateway<Order>("api/movies/");
+        ServiceGateway<Customer> serviceCustomer = new ServiceGateway<Customer>("api/customers");
+
+
         [HttpGet]
         public ActionResult Buy(ShoppingCart cart)
         {
+
             Customer customer = (Customer) TempData.Peek("customer");
             int customerId = customer.Id;
-            customer = _efService.Customers.GetById(customerId, "Address");
+            //customer = _efService.Customers.GetById(customerId, "Address");
+            customer = serviceCustomer.GetOne(customerId,"Address");
+           
             cart.Customer = customer;
 
             return View(cart);
@@ -36,16 +43,16 @@ namespace MovieStoreAdminUI.Controllers
                 Date = DateTime.Now,
                 OrderLines = cart.orderLines
             };
-            _efService.Orders.Create(order);
-            _efService.Save();
-            //_facade._orderRepository.Add(order);
+            service.CreateOne(order);
+            //_efService.Orders.Create(order);
+            //_efService.Save();
             cart.CleanCart();
             return View("Confirmed");
         }
 
         protected override void Dispose(bool disposing)
         {
-            _efService.Dispose();
+            //_efService.Dispose();
             base.Dispose(disposing);
         }
     }
