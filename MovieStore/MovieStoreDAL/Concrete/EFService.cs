@@ -49,8 +49,9 @@ namespace MovieStoreDAL.Concrete
                 return query.Distinct().ToList();
             }
         }
-        public TEntity GetById(int id, string includeProperties = "")
+        public TEntity GetById(int id)
         {
+            return DbSet.Find(id);
         }
         public TEntity GetOne(Expression<Func<TEntity, bool>> filter = null, string includeProperties = "")
         {

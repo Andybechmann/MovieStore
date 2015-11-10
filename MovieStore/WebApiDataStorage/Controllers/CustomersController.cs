@@ -41,15 +41,13 @@ namespace WebApiDataStorage.Controllers
         }
 
         // GET: api/Customers/5
-<<<<<<< HEAD
-        public HttpResponseMessage GetCustomer(int id,string properties)
-=======
+
+        
         public HttpResponseMessage GetCustomer(int id, string properties = "")
->>>>>>> origin/master
         {
             try
             {
-                Customer customer = service.Customers.GetById(id,properties);
+                Customer customer = service.Customers.GetOne(c=>c.Id==id,properties);
                 if (customer == null)
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound, "Customer not found");

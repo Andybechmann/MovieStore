@@ -49,7 +49,7 @@ namespace MovieStoreDAL
 
         public Customer Get(int id)
         {
-            return _efService.Customers.GetById(id,"Address");
+            return _efService.Customers.GetOne(c=> c.Id==id, "Address");
             //return db.Customers.Include("Address").FirstOrDefault(a => a.Id == id);
         }
 

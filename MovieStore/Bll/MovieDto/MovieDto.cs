@@ -11,13 +11,12 @@ namespace Bll.MovieDto
     public class MovieDto
     {
         [DataMember]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [DataMember]
-        public string title { get; set; }
+        public string Title { get; set; }
 
-    
-        [DataMember]
+            [DataMember]
         public DateTime Year { get; set; }
 
         [DataMember]

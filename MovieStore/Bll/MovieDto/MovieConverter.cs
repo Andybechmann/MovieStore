@@ -13,10 +13,14 @@ namespace Bll.MovieDto
         {
             var dto = new MovieDto()
             {
-               dto.id
-                
-
-            };
+               Id = item.Id,
+               Title = item.Title,
+               Price = item.Price,
+               Genre = item.Genre,
+               ImageUrl = item.ImageUrl,
+               TrailerUrl = item.TrailerUrl,
+               Year = item.Year
+               };
             return null;
         }
     }
