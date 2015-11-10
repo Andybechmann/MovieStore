@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using MovieStoreDAL.Infrastructure;
 
 namespace MovieStoreDAL
 {
-    public class Customer
+    public class Customer : IEntity
     {
         public int Id { get; set; }
         [Required]

@@ -5,28 +5,30 @@ using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
 using MovieStoreDAL.Concrete;
+using MovieStoreDAL.Infrastructure;
 
 namespace MovieStoreAdminUI.Controllers
 {
     public class CustomersController : Controller
     {
-        //private CustomerRepository cr = new CustomerRepository();
-        //private DALFacade df = new DALFacade();
-        SampleEFService _efService = new SampleEFService();
+       
+        //SampleEFService _efService = new SampleEFService();
+        ServiceGateway<Customer> service = new ServiceGateway<Customer>("api/customers/"); 
 
         // GET: Customers
         public ActionResult Index()
         {
-            //IEnumerable<Customer> customers = df._customersRepository.GetAll();
-            IEnumerable<Customer> customers = _efService.Customers.GetAll();
+            
+            //IEnumerable<Customer> customers = _efService.Customers.GetAll();
+            IEnumerable<Customer> customers = service.GetAll();
             return View(customers);
         }
 
         // GET: Customers/Details/5
         public ActionResult Details(int id)
         {
-            //var customer = df._customersRepository.Get(id);
-            Customer customer = _efService.Customers.GetById(id);
+            //Customer customer = _efService.Customers.GetById(id);
+            Customer customer = service.GetOne(id);
             return View(customer);
         }
 
@@ -42,9 +44,10 @@ namespace MovieStoreAdminUI.Controllers
         {
             try
             {
-                //df._customersRepository.Add(customer);
-                _efService.Customers.Create(customer);
-                _efService.Save();
+                service.CreateOne(customer);
+                
+                //_efService.Customers.Create(customer);
+                //_efService.Save();
                 return RedirectToAction("Index");
             }
             catch
@@ -56,8 +59,8 @@ namespace MovieStoreAdminUI.Controllers
         // GET: Customers/Edit/5
         public ActionResult Edit(int id)
         {
-            //Customer customer = df._customersRepository.Get(id);
-            Customer customer = _efService.Customers.GetById(id);
+            Customer customer = service.GetOne(id);
+            //Customer customer = _efService.Customers.GetById(id);
             return View(customer);
         }
 
@@ -67,9 +70,9 @@ namespace MovieStoreAdminUI.Controllers
         {
             try
             {
-                //df._customersRepository.Edit(customer);
-                _efService.Customers.Update(customer);
-                _efService.Save();
+                service.Update(customer);
+                //_efService.Customers.Update(customer);
+                //_efService.Save();
                 return RedirectToAction("Index");
             }
             catch
@@ -81,8 +84,8 @@ namespace MovieStoreAdminUI.Controllers
         // GET: Customers/Delete/5
         public ActionResult Delete(int id)
         {
-           //Customer customer = df._customersRepository.Get(id);
-            Customer customer = _efService.Customers.GetById(id);
+            Customer customer = service.GetOne(id);
+            //Customer customer = _efService.Customers.GetById(id);
             return View(customer);
         }
 
@@ -92,11 +95,9 @@ namespace MovieStoreAdminUI.Controllers
         {
             try
             {
-                //Customer customer = df._customersRepository.Get(id);
-                //df._customersRepository.Remove(id);
-                //Customer customer = _efService.Customers.GetById(id);
-                _efService.Customers.Delete(id);
-                _efService.Save();
+                service.Delete(id);
+                //_efService.Customers.Delete(id);
+                //_efService.Save();
 
                 return RedirectToAction("Index");
             }
@@ -108,7 +109,8 @@ namespace MovieStoreAdminUI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            _efService.Dispose();
+           
+            //_efService.Dispose();
             base.Dispose(disposing);
         }
     }

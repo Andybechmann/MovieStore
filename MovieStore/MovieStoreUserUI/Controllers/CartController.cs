@@ -6,13 +6,17 @@ using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
 using MovieStoreDAL.Concrete;
+using MovieStoreDAL.Infrastructure;
 
 namespace MovieStoreAdminUI.Controllers
 {
     public class CartController : Controller
     {
         //DALFacade facade = new DALFacade();
-        SampleEFService _efService = new SampleEFService();
+        //SampleEFService _efService = new SampleEFService();
+        ServiceGateway<Movie> service = new ServiceGateway<Movie>("api/movies/");
+
+
         // GET: Cart
         public ActionResult Index()
         {
@@ -35,7 +39,8 @@ namespace MovieStoreAdminUI.Controllers
         {
 
             //var movie = facade._moviesRepository.Get(id);
-            Movie movie = _efService.Movies.GetById(id);
+            Movie movie = service.GetOne(id);
+            //Movie movie = _efService.Movies.GetById(id);
             //var cart = GetCart();
 
             GetCart().AddOrderLine(movie, 1);
@@ -47,7 +52,8 @@ namespace MovieStoreAdminUI.Controllers
         {
             //var movie = facade._moviesRepository.Get(id);
             //var cart = GetCart();
-            Movie movie = _efService.Movies.GetById(id);
+            Movie movie = service.GetOne(id);
+            //Movie movie = _efService.Movies.GetById(id);
             GetCart().RemoveAmount(movie, 1);
 
             return RedirectToAction("Index");
@@ -63,11 +69,5 @@ namespace MovieStoreAdminUI.Controllers
             }
             return cart;
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            _efService.Dispose();
-            base.Dispose(disposing);
         }
-    }
 }

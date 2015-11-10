@@ -6,17 +6,19 @@ using System.Web.Mvc;
 using MovieStoreDAL;
 using MovieStoreDAL.Abstarct;
 using MovieStoreDAL.Concrete;
+using MovieStoreDAL.Infrastructure;
 
 namespace MovieStoreAdminUI.Controllers
 {
         public class CustomerController : Controller
         {
-            //private CustomerRepository cr = new CustomerRepository();
-            //private DALFacade df = new DALFacade();
-            SampleEFService _efService = new SampleEFService(); 
+        //private CustomerRepository cr = new CustomerRepository();
+        //private DALFacade df = new DALFacade();
 
-            // GET: Customers/Create
-            public ActionResult Create()
+        ServiceGateway<Customer> service = new ServiceGateway<Customer>("api/movies/");
+
+        // GET: Customers/Create
+        public ActionResult Create()
             {
                 return View();
             }
@@ -27,8 +29,9 @@ namespace MovieStoreAdminUI.Controllers
             {
                 try
                 {
-                    _efService.Customers.Create(customer);
-                    _efService.Save();
+                    service.CreateOne(customer);
+                    //_efService.Customers.Create(customer);
+                    //_efService.Save();
                     //df._customersRepository.Add(customer);
 
                     return View("CheckEmail");
@@ -42,8 +45,8 @@ namespace MovieStoreAdminUI.Controllers
             // GET: Customers/Edit/5
             public ActionResult Edit(int id)
             {
-                //Customer customer = df._customersRepository.Get(id);
-                Customer customer = _efService.Customers.GetById(id);
+                //Customer customer = _efService.Customers.GetById(id);
+                Customer customer = service.GetOne(id);
 
                  return View(customer);
             }
@@ -55,9 +58,9 @@ namespace MovieStoreAdminUI.Controllers
             {
                 try
                 {
-                    //df._customersRepository.Edit(customer);
-                    _efService.Customers.Update(customer);
-                    _efService.Save();
+                    service.Update(customer);
+                    //_efService.Customers.Update(customer);
+                    //_efService.Save();
                     return RedirectToAction("Index");
                 }
                 catch
@@ -73,8 +76,16 @@ namespace MovieStoreAdminUI.Controllers
         [HttpPost]
         public ActionResult CheckEmail(string email)
         {
-            //Customer customer = df._customersRepository.GetAll().FirstOrDefault(c => c.Email == email);
-            Customer customer = _efService.Customers.GetFirst(c => c.Email == email);
+            //Customer customer = _efService.Customers.GetFirst(c => c.Email == email);
+            IEnumerable<Customer> customers = service.GetAll();
+            Customer customer = null;
+            foreach (Customer customer1 in customers)
+            {
+                if (customer1.Email == email)
+                    customer = customer1;
+            } 
+
+        
             if (customer != null)
             {
                 ViewBag.Exist = "Customer with email is exist";
@@ -86,11 +97,5 @@ namespace MovieStoreAdminUI.Controllers
             }
             return View();
         }
-
-            protected override void Dispose(bool disposing)
-            {
-                _efService.Dispose();
-                base.Dispose(disposing);
-            }
         }
     }
