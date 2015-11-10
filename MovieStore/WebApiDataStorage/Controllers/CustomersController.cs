@@ -41,11 +41,11 @@ namespace WebApiDataStorage.Controllers
         }
 
         // GET: api/Customers/5
-        public HttpResponseMessage GetCustomer(int id)
+        public HttpResponseMessage GetCustomer(int id,string properties)
         {
             try
             {
-                Customer customer = service.Customers.GetById(id);
+                Customer customer = service.Customers.GetById(id,properties);
                 if (customer == null)
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound, "Customer not found");
