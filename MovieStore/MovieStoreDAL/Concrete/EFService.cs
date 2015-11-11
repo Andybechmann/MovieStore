@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using MovieStoreDAL.Abstarct;
 
 namespace MovieStoreDAL.Concrete
@@ -24,7 +25,6 @@ namespace MovieStoreDAL.Concrete
         {
             return Get(null,orderBy,includeProperties);
         }
-
         public IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null, 
             Func<IQueryable<TEntity>,IOrderedQueryable<TEntity>> orderBy = null, 
@@ -49,7 +49,7 @@ namespace MovieStoreDAL.Concrete
                 return query.Distinct().ToList();
             }
         }
-        public TEntity GetById(int id)
+        private TEntity GetById(int id)
         {
             return DbSet.Find(id);
         }

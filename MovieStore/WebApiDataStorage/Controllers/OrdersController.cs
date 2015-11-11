@@ -36,7 +36,7 @@ namespace WebApiDataStorage.Controllers
         {
             try
             {
-                Order order = service.Orders.GetById(id);
+                Order order = service.Orders.GetOne(o => o.Id == id);
                 if (order == null)
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound, "Order not found");

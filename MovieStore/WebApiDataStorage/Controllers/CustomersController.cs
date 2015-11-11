@@ -15,7 +15,6 @@ namespace WebApiDataStorage.Controllers
 {
     public class CustomersController : ApiController
     {
-        //private MovieStoreDbContext db = new MovieStoreDbContext();
         SampleEFService service = new SampleEFService();
 
         // GET: api/Customers
@@ -23,6 +22,7 @@ namespace WebApiDataStorage.Controllers
         {
             return GetCustomers("");
         }
+        
         public HttpResponseMessage GetCustomers(string properties)
         {
             try
@@ -43,7 +43,7 @@ namespace WebApiDataStorage.Controllers
         // GET: api/Customers/5
 
         
-        public HttpResponseMessage GetCustomer(int id, string properties = "")
+        public HttpResponseMessage GetCustomer(int id, string properties)
         {
             try
             {

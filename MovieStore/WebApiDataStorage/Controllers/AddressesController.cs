@@ -32,11 +32,11 @@ namespace WebApiDataStorage.Controllers
         }
 
         // GET: api/Addresses/5
-        public HttpResponseMessage GetCustomer(int id)
+        public HttpResponseMessage GetAddress(int id)
         {
             try
             {
-                Address address = service.Addresses.GetById(id);
+                Address address = service.Addresses.GetOne( a => a.Id == id);  
                 if (address == null)
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound, "Address not found");
@@ -52,7 +52,7 @@ namespace WebApiDataStorage.Controllers
         }
 
         // PUT: api/Addresses/5
-        public HttpResponseMessage PutCustomer(int id, Address address)
+        public HttpResponseMessage PutAddress(int id, Address address)
         {
             if (!ModelState.IsValid)
             {
@@ -70,7 +70,7 @@ namespace WebApiDataStorage.Controllers
             }
             catch (Exception ex)
             {
-                if (!CustomerExists(id))
+                if (!AddressExists(id))
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound, "Address with given id not found");
                 }
@@ -80,7 +80,7 @@ namespace WebApiDataStorage.Controllers
         }
 
         // POST: api/Addresses
-        public HttpResponseMessage PostCustomer(Address address)
+        public HttpResponseMessage PostAddress(Address address)
         {
             if (!ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace WebApiDataStorage.Controllers
         }
 
         // DELETE: api/Addresses/5
-        public HttpResponseMessage DeleteCustomer(int id)
+        public HttpResponseMessage DeleteAddress(int id)
         {
             try
             {
@@ -125,7 +125,7 @@ namespace WebApiDataStorage.Controllers
             base.Dispose(disposing);
         }
 
-        private bool CustomerExists(int id)
+        private bool AddressExists(int id)
         {
             return service.Addresses.Any(c => c.Id == id);
         }

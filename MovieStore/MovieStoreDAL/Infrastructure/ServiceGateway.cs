@@ -15,7 +15,7 @@ namespace MovieStoreDAL.Infrastructure
         private string path;
         private string hostUri;
 
-        public ServiceGateway(string path, string hostUri = "http://localhost:7447/")
+        public ServiceGateway(string path, string hostUri = "http://movieshopmy.azurewebsites.net/")
         { 
             this.hostUri = hostUri;
             this.path = path;

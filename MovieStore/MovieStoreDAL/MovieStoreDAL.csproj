@@ -72,19 +72,14 @@
     <Compile Include="Concrete\SampleEfService.cs" />
     <Compile Include="Concrete\EFService.cs" />
     <Compile Include="Customer.cs" />
-    <Compile Include="CustomerRepository.cs" />
-    <Compile Include="DALFacade.cs" />
     <Compile Include="DbInitializer.cs" />
     <Compile Include="Infrastructure\IEntity.cs" />
     <Compile Include="Infrastructure\ServiceGateway.cs" />
-    <Compile Include="IRepository.cs" />
     <Compile Include="Movie.cs" />
-    <Compile Include="MovieRepository.cs" />
     <Compile Include="MovieStoreDbContext.cs" />
     <Compile Include="MovieStoreDbInitializer.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderLine.cs" />
-    <Compile Include="OrderRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

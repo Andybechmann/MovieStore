@@ -41,7 +41,7 @@ namespace WebApiDataStorage.Controllers
         {
             try
             {
-                Movie movie = service.Movies.GetById(id);
+                Movie movie = service.Movies.GetOne(m => m.Id == id);
                 if (movie == null)
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound, "Movie not found");
