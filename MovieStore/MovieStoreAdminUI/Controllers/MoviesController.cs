@@ -14,15 +14,12 @@ namespace MovieStoreUI.Controllers
     public class MoviesController : Controller
     {
         
-        //private DALFacade df = new DALFacade();
-        //private SampleEFService _efService = new SampleEFService();
         ServiceGateway<Movie> service = new ServiceGateway<Movie>("api/movies/");
 
         // GET: Movies
         public ActionResult Index()
         {
             IEnumerable<Movie> movies = service.GetAll();
-            //IEnumerable<Movie> movies = _efService.Movies.GetAll();
             return View(movies);
          
         }
@@ -31,7 +28,6 @@ namespace MovieStoreUI.Controllers
         public ActionResult Details(int id)
         {
             Movie movie = service.GetOne(id);
-            //Movie movie = _efService.Movies.GetById(id);
 
             if (movie == null)
             {
@@ -56,9 +52,6 @@ namespace MovieStoreUI.Controllers
             if (ModelState.IsValid)
             {
                 service.CreateOne(movie);
-                //_efService.Movies.Create(movie);
-                //_efService.Save();
-             
                 return RedirectToAction("Index");
             }
 
@@ -69,7 +62,6 @@ namespace MovieStoreUI.Controllers
         public ActionResult Edit(int id)
         {
             Movie movie = service.GetOne(id);
-            //Movie movie = _efService.Movies.GetById(id);
             if (movie == null)
             {
                 return HttpNotFound();
@@ -87,35 +79,22 @@ namespace MovieStoreUI.Controllers
             if (ModelState.IsValid)
             {
                 service.Update(movie);
-                //_efService.Movies.Update(movie);
-                //_efService.Save();
+               
                 return RedirectToAction("Index");
             }
             return View(movie);
         }
 
-     
-
-        // POST: Movies/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
+        
         [HttpPost]
         public ActionResult Delete(int id)
         {
             service.Delete(id);
            
-            //_efService.Movies.Delete(id);
-            //_efService.Save();
-            
             TempData["message"] = string.Format("Was deleted");
             
             return RedirectToAction("Index");
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            //_efService.Dispose();
-            base.Dispose(disposing);
-        }
+      
     }
 }

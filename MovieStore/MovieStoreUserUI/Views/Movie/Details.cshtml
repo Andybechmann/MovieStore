@@ -1,4 +1,4 @@
-﻿@model MovieStoreDAL.Movie
+﻿@model MovieStoreDAL.Bll.MovieDto.MovieDto
 
 @{
     ViewBag.Title = @Html.DisplayFor(model => model.Title);
@@ -35,6 +35,13 @@
 
                 <dd>
                     @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.USDPrice)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.USDPrice)
                 </dd>
 
                 <dt>

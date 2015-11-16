@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MovieStoreDAL.Bll.MovieDto;
 
 namespace MovieStoreDAL
 
@@ -29,14 +30,14 @@ namespace MovieStoreDAL
         [Column(Order = 0), Key, ForeignKey("Movie")]
         public int Movie_Id { get; set; }
 
-        public virtual Movie Movie { get; set; }
+        public virtual MovieDto Movie { get; set; }
 
         [Column(Order = 1), Key, ForeignKey("Order")]
         public int Order_Id { get; set; }
 
         public virtual Order Order { get; set; }
 
-        public double GetOrdeLineSum()
+        public decimal GetOrdeLineSum()
         {
             return amount*Movie.Price;
         }

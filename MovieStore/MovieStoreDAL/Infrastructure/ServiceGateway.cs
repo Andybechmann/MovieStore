@@ -12,10 +12,10 @@ namespace MovieStoreDAL.Infrastructure
     public class ServiceGateway <TEntity> where TEntity : IEntity
     {
 
-        private string path;
-        private string hostUri;
+        private readonly string path;
+        private readonly string hostUri;
 
-        public ServiceGateway(string path, string hostUri = "http://movieshopmy.azurewebsites.net/")
+        public ServiceGateway(string path, string hostUri = "http://localhost:7447/")
         { 
             this.hostUri = hostUri;
             this.path = path;

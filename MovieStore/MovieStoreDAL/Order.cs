@@ -19,7 +19,7 @@ namespace MovieStoreDAL
 
         public virtual List<OrderLine> OrderLines { get; set; }
 
-       public double GetOrderSum()
+       public decimal GetOrderSum()
        {
            return OrderLines.Sum(orderLine => orderLine.GetOrdeLineSum());
        }

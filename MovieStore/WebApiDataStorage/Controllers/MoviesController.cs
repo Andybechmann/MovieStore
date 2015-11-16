@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using MovieStoreDAL;
+using MovieStoreDAL.Bll.MovieDto;
 using MovieStoreDAL.Concrete;
 
 namespace WebApiDataStorage.Controllers
@@ -12,7 +13,7 @@ namespace WebApiDataStorage.Controllers
     public class MoviesController : ApiController
     {
         SampleEFService service = new SampleEFService();
-
+        AbstractDtoConverter<Movie,MovieDto> converter = new MovieConverter();
         // GET: api/Movies
 
         public HttpResponseMessage GetMovies()
@@ -26,7 +27,7 @@ namespace WebApiDataStorage.Controllers
                 IEnumerable<Movie> movies = service.Movies.GetAll(null,properties);
                 if (movies.Any())
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, movies);
+                    return Request.CreateResponse(HttpStatusCode.OK, converter.Convert(movies));
                 }
                 return Request.CreateResponse(HttpStatusCode.NotFound, "Movies not found");
             }
@@ -47,7 +48,7 @@ namespace WebApiDataStorage.Controllers
                     return Request.CreateResponse(HttpStatusCode.NotFound, "Movie not found");
                 }
 
-                return Request.CreateResponse(HttpStatusCode.OK, movie);
+                return Request.CreateResponse(HttpStatusCode.OK, converter.Convert(movie));
             }
             catch (Exception ex)
             {

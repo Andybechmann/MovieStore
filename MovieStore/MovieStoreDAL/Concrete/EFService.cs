@@ -80,18 +80,13 @@ namespace MovieStoreDAL.Concrete
 
         public TEntity Delete(TEntity entity)
         {
-            if (Context.Entry(entity).State == EntityState.Detached)
-            {
-                DbSet.Attach(entity);
-            }
+            AttachIfDetached(entity);
             return DbSet.Remove(entity);
         }
+
         public TEntity Update(TEntity entity)
         {
-            if (Context.Entry(entity).State == EntityState.Detached)
-            {
-                DbSet.Attach(entity);
-            }
+            AttachIfDetached(entity);
             Context.Entry(entity).State = EntityState.Modified;
             return entity;
         }
@@ -104,6 +99,13 @@ namespace MovieStoreDAL.Concrete
         public bool Any(Expression<Func<TEntity, bool>> filter = null)
         {
             return Count(filter) > 0;
+        }
+        private void AttachIfDetached(TEntity entity)
+        {
+            if (Context.Entry(entity).State == EntityState.Detached)
+            {
+                DbSet.Attach(entity);
+            }
         }
     }
 }

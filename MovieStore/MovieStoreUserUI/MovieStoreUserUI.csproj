@@ -205,10 +205,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MovieStoreAdminUI\MovieStoreAdminUI.csproj">
-      <Project>{a38c1dd3-ed9a-4217-9928-a54d946c4592}</Project>
-      <Name>MovieStoreAdminUI</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MovieStoreDAL\MovieStoreDAL.csproj">
       <Project>{93f41840-309d-445f-8010-81c1772a1432}</Project>
       <Name>MovieStoreDAL</Name>

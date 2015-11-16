@@ -1,26 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+using MovieStoreDAL.Infrastructure;
 
-namespace Bll.MovieDto
+namespace MovieStoreDAL.Bll.MovieDto
 {
     [DataContract(IsReference = true)]
-    public class MovieDto
+    public class MovieDto:IEntity
     {
+        
         [DataMember]
         public int Id { get; set; }
 
         [DataMember]
         public string Title { get; set; }
 
-            [DataMember]
+        [DataMember]
         public DateTime Year { get; set; }
 
         [DataMember]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
+        [DataMember]
+        [Display(Name = "Price USD")]
+        public decimal USDPrice { get; set; }
 
         [DataMember]
         public string ImageUrl { get; set; }
@@ -31,6 +33,5 @@ namespace Bll.MovieDto
         [DataMember]    
         public string Genre { get; set; }
 
-       
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
-using MovieStoreDAL.Concrete;
+using MovieStoreDAL.Bll.MovieDto;
 using MovieStoreDAL.Infrastructure;
 using MovieStoreUserUI.Models;
 
@@ -12,31 +12,25 @@ namespace MovieStoreAdminUI.Controllers
 {
     public class MovieController : Controller
     {
-        //DALFacade facade = new DALFacade();
-        // GET: Movie
-        //SampleEFService _efService = new SampleEFService();
-        ServiceGateway<Movie> service = new ServiceGateway<Movie>("api/movies/");
+        
+        ServiceGateway<MovieDto> service = new ServiceGateway<MovieDto>("api/movies/");
 
         public ActionResult Index()
         {
-            //return View(facade._moviesRepository.GetAll());
-            IEnumerable<Movie> movies = service.GetAll();
+            IEnumerable<MovieDto> movies = service.GetAll();
             return View(service.GetAll());
         }
 
         // GET: Movie/Details/5
         public ActionResult Details(int id)
         {
-            //Movie movie = _efService.Movies.GetById(id);
-            Movie movie = service.GetOne(id);
+            MovieDto movie = service.GetOne(id);
             return View(movie);
         }
 
-        public ActionResult AddToCart(ShoppingCart cart, int Id)
+        public ActionResult AddToCart(ShoppingCart cart, int id)
         {
-            //Movie movie = _efService.Movies.GetById(Id);
-            Movie movie = service.GetOne(Id);
-            //var cart = GetCart();
+            MovieDto movie = service.GetOne(id);
             cart.AddOrderLine(movie, 1);
 
             return RedirectToAction("Index");

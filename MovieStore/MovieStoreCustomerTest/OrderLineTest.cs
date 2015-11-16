@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MovieStoreDAL.Bll.MovieDto;
 
 namespace MovieStoreCustomerTest
 {
@@ -16,7 +17,7 @@ namespace MovieStoreCustomerTest
         public void Order_line_properties_set_ok()
         {
             OrderLine orderLine = new OrderLine();
-            Movie movie = new Movie() { Id = 1, Title = "Buller" };
+            MovieDto movie = new MovieDto() { Id = 1, Title = "Buller" };
             orderLine.Movie = movie;
             orderLine.Amount = 10;
 

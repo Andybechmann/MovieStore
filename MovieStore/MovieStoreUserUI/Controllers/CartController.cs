@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieStoreDAL;
+using MovieStoreDAL.Bll.MovieDto;
 using MovieStoreDAL.Concrete;
 using MovieStoreDAL.Infrastructure;
 
@@ -14,7 +15,7 @@ namespace MovieStoreAdminUI.Controllers
     {
         //DALFacade facade = new DALFacade();
         //SampleEFService _efService = new SampleEFService();
-        ServiceGateway<Movie> service = new ServiceGateway<Movie>("api/movies/");
+        ServiceGateway<MovieDto> service = new ServiceGateway<MovieDto>("api/movies/");
 
 
         // GET: Cart
@@ -39,7 +40,7 @@ namespace MovieStoreAdminUI.Controllers
         {
 
             //var movie = facade._moviesRepository.Get(id);
-            Movie movie = service.GetOne(id);
+            MovieDto movie = service.GetOne(id);
             //Movie movie = _efService.Movies.GetById(id);
             //var cart = GetCart();
 
@@ -52,7 +53,7 @@ namespace MovieStoreAdminUI.Controllers
         {
             //var movie = facade._moviesRepository.Get(id);
             //var cart = GetCart();
-            Movie movie = service.GetOne(id);
+            MovieDto movie = service.GetOne(id);
             //Movie movie = _efService.Movies.GetById(id);
             GetCart().RemoveAmount(movie, 1);
 

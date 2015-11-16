@@ -17,7 +17,7 @@ namespace MovieStoreDAL
         [DataType(DataType.Date)]
         public DateTime Year { get; set; }
         
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
         
