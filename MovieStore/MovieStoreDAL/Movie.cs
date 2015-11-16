@@ -18,9 +18,9 @@ namespace MovieStoreDAL
         public DateTime Year { get; set; }
         
         public double Price { get; set; }
-
+        [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
-
+        
         public string TrailerUrl { get; set; }
       
         public string Genre { get; set; }
